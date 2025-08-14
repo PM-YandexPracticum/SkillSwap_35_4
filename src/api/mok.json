@@ -1,0 +1,807 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "user1",
+      "password": "password1",
+      "avatarUrl": "https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww",
+      "name": "Иван Петров",
+      "location": "Москва",
+      "age": "34 года",
+      "gender": "Мужской",
+      "description": "Эксперт в управлении проектами и командами",
+      "skillCanTeach": [
+        {
+          "id": 1011,
+          "name": "Управление командой"
+        },
+        {
+          "id": 1017,
+          "name": "Проектное управление"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1031,
+          "name": "Английский"
+        },
+        {
+          "id": 1021,
+          "name": "Рисование и иллюстрация"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "login": "user2",
+      "password": "password2",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww",
+      "name": "Анна Сидорова",
+      "location": "Санкт-Петербург",
+      "age": "28 лет",
+      "gender": "Женский",
+      "description": "Преподаватель английского языка с международным сертификатом",
+      "skillCanTeach": [
+        {
+          "id": 1031,
+          "name": "Английский"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1022,
+          "name": "Фотография"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "login": "user3",
+      "password": "password3",
+      "avatarUrl": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww",
+      "name": "Сергей Иванов",
+      "location": "Новосибирск",
+      "age": "42 года",
+      "gender": "Мужской",
+      "description": "Профессиональный фотограф с 15-летним опытом",
+      "skillCanTeach": [
+        {
+          "id": 1022,
+          "name": "Фотография"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1033,
+          "name": "Испанский"
+        },
+        {
+          "id": 1023,
+          "name": "Видеомонтаж"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "login": "user4",
+      "password": "password4",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Елена Кузнецова",
+      "location": "Казань",
+      "age": "31 год",
+      "gender": "Женский",
+      "description": "Художник и преподаватель рисования",
+      "skillCanTeach": [
+        {
+          "id": 1021,
+          "name": "Рисование и иллюстрация"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1011,
+          "name": "Управление командой"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "login": "user5",
+      "password": "password5",
+      "avatarUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Дмитрий Смирнов",
+      "location": "Екатеринбург",
+      "age": "29 лет",
+      "gender": "Мужской",
+      "description": "Специалист по интернет-маркетингу",
+      "skillCanTeach": [
+        {
+          "id": 1012,
+          "name": "Web-Маркетинг и реклама"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1042,
+          "name": "Навыки обучения"
+        },
+        {
+          "id": 1016,
+          "name": "Тайм-менеджмент"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "login": "user6",
+      "password": "password6",
+      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Ольга Васильева",
+      "location": "Нижний Новгород",
+      "age": "35 лет",
+      "gender": "Женский",
+      "description": "Инструктор по йоге и медитации",
+      "skillCanTeach": [
+        {
+          "id": 1051,
+          "name": "Йога и медитация"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1041,
+          "name": "Личностное развитие"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "login": "user7",
+      "password": "password7",
+      "avatarUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Алексей Козлов",
+      "location": "Ростов-на-Дону",
+      "age": "40 лет",
+      "gender": "Мужской",
+      "description": "Шеф-повар и кулинарный эксперт",
+      "skillCanTeach": [
+        {
+          "id": 1063,
+          "name": "Приготовление еды"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1018,
+          "name": "Предпринимательство"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "login": "user8",
+      "password": "password8",
+      "avatarUrl": "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Мария Новикова",
+      "location": "Самара",
+      "age": "27 лет",
+      "gender": "Женский",
+      "description": "Графический дизайнер и иллюстратор",
+      "skillCanTeach": [
+        {
+          "id": 1021,
+          "name": "Рисование и иллюстрация"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1012,
+          "name": "Web-Маркетинг и реклама"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "login": "user9",
+      "password": "password9",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Андрей Морозов",
+      "location": "Омск",
+      "age": "33 года",
+      "gender": "Мужской",
+      "description": "Финансовый консультант и эксперт по инвестициям",
+      "skillCanTeach": [
+        {
+          "id": 1013,
+          "name": "Продажи и переговоры"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1035,
+          "name": "Китайский"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "login": "user10",
+      "password": "password10",
+      "avatarUrl": "https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Татьяна Павлова",
+      "location": "Челябинск",
+      "age": "38 лет",
+      "gender": "Женский",
+      "description": "Преподаватель испанского языка",
+      "skillCanTeach": [
+        {
+          "id": 1033,
+          "name": "Испанский"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1032,
+          "name": "Французский"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "login": "user11",
+      "password": "password11",
+      "avatarUrl": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Артем Лебедев",
+      "location": "Краснодар",
+      "age": "30 лет",
+      "gender": "Мужской",
+      "description": "Фитнес-тренер и нутрициолог",
+      "skillCanTeach": [
+        {
+          "id": 1055,
+          "name": "Физические тренировки"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1052,
+          "name": "Питание и ЗОЖ"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "login": "user12",
+      "password": "password12",
+      "avatarUrl": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Юлия Соколова",
+      "location": "Воронеж",
+      "age": "26 лет",
+      "gender": "Женский",
+      "description": "UX/UI дизайнер с опытом работы в крупных компаниях",
+      "skillCanTeach": [
+        {
+          "id": 1023,
+          "name": "Видеомонтаж"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1014,
+          "name": "Личный бренд"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "login": "user13",
+      "password": "password13",
+      "avatarUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Михаил Попов",
+      "location": "Пермь",
+      "age": "45 лет",
+      "gender": "Мужской",
+      "description": "Коуч и тренер по личностному развитию",
+      "skillCanTeach": [
+        {
+          "id": 1046,
+          "name": "Коучинг"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1054,
+          "name": "Осознанность"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "login": "user14",
+      "password": "password14",
+      "avatarUrl": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Анастасия Федорова",
+      "location": "Волгоград",
+      "age": "32 года",
+      "gender": "Женский",
+      "description": "Преподаватель вокала и музыкальный продюсер",
+      "skillCanTeach": [
+        {
+          "id": 1024,
+          "name": "Музыка и звук"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1025,
+          "name": "Актёрское мастерство"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "login": "user15",
+      "password": "password15",
+      "avatarUrl": "https://images.unsplash.com/photo-1528892952291-009c663ce843?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Павел Власов",
+      "location": "Красноярск",
+      "age": "36 лет",
+      "gender": "Мужской",
+      "description": "Бизнес-тренер и эксперт по переговорам",
+      "skillCanTeach": [
+        {
+          "id": 1013,
+          "name": "Продажи и переговоры"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1015,
+          "name": "Резюме и собеседование"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "login": "user16",
+      "password": "password16",
+      "avatarUrl": "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Екатерина Медведева",
+      "location": "Тюмень",
+      "age": "29 лет",
+      "gender": "Женский",
+      "description": "Психолог и специалист по ментальному здоровью",
+      "skillCanTeach": [
+        {
+          "id": 1053,
+          "name": "Ментальное здоровье"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1027,
+          "name": "Арт-терапия"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "login": "user17",
+      "password": "password17",
+      "avatarUrl": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Денис Егоров",
+      "location": "Саратов",
+      "age": "31 год",
+      "gender": "Мужской",
+      "description": "Специалист по тайм-менеджменту и продуктивности",
+      "skillCanTeach": [
+        {
+          "id": 1016,
+          "name": "Тайм-менеджмент"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1044,
+          "name": "Скорочтение"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "login": "user18",
+      "password": "password18",
+      "avatarUrl": "https://images.unsplash.com/photo-1553514029-1318c9127859?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Виктория Ковалева",
+      "location": "Тольятти",
+      "age": "34 года",
+      "gender": "Женский",
+      "description": "Специалист по организации пространства",
+      "skillCanTeach": [
+        {
+          "id": 1061,
+          "name": "Уборка и организация"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1028,
+          "name": "Декор и DIY"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "login": "user19",
+      "password": "password19",
+      "avatarUrl": "https://images.unsplash.com/photo-1583864697784-a0efc8379f70?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Александр Николаев",
+      "location": "Ижевск",
+      "age": "39 лет",
+      "gender": "Мужской",
+      "description": "Эксперт по предпринимательству и стартапам",
+      "skillCanTeach": [
+        {
+          "id": 1018,
+          "name": "Предпринимательство"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1012,
+          "name": "Web-Маркетинг и реклама"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "login": "user20",
+      "password": "password20",
+      "avatarUrl": "https://images.unsplash.com/photo-1542206395-9feb3edaa68d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Светлана Романова",
+      "location": "Барнаул",
+      "age": "27 лет",
+      "gender": "Женский",
+      "description": "Специалист по созданию резюме и подготовке к собеседованиям",
+      "skillCanTeach": [
+        {
+          "id": 1015,
+          "name": "Резюме и собеседование"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1014,
+          "name": "Личный бренд"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "login": "user21",
+      "password": "password21",
+      "avatarUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+      "name": "Константин Белов",
+      "location": "Уфа",
+      "age": "41 год",
+      "gender": "Мужской",
+      "description": "Эксперт по личному брендингу и самопрезентации",
+      "skillCanTeach": [
+        {
+          "id": 1014,
+          "name": "Личный бренд"
+        }
+      ],
+      "subcategoriesWantToLearn": [
+        {
+          "id": 1026,
+          "name": "Креативное письмо"
+        }
+      ]
+    }
+  ],
+  "filters": {
+    "genders": [
+      {
+        "id": 0,
+        "name": "Не имеет значения"
+      },
+      {
+        "id": 1,
+        "name": "Мужской"
+      },
+      {
+        "id": 2,
+        "name": "Женский"
+      }
+    ],
+    "skills": [
+      {
+        "id": 101,
+        "name": "Бизнес и карьера",
+        "subcategories": [
+          {
+            "id": 1011,
+            "name": "Управление командой"
+          },
+          {
+            "id": 1012,
+            "name": "Web-Маркетинг и реклама"
+          },
+          {
+            "id": 1013,
+            "name": "Продажи и переговоры"
+          },
+          {
+            "id": 1014,
+            "name": "Личный бренд"
+          },
+          {
+            "id": 1015,
+            "name": "Резюме и собеседование"
+          },
+          {
+            "id": 1016,
+            "name": "Тайм-менеджмент"
+          },
+          {
+            "id": 1017,
+            "name": "Проектное управление"
+          },
+          {
+            "id": 1018,
+            "name": "Предпринимательство"
+          }
+        ]
+      },
+      {
+        "id": 102,
+        "name": "Творчество и искусство",
+        "subcategories": [
+          {
+            "id": 1021,
+            "name": "Рисование и иллюстрация"
+          },
+          {
+            "id": 1022,
+            "name": "Фотография"
+          },
+          {
+            "id": 1023,
+            "name": "Видеомонтаж"
+          },
+          {
+            "id": 1024,
+            "name": "Музыка и звук"
+          },
+          {
+            "id": 1025,
+            "name": "Актёрское мастерство"
+          },
+          {
+            "id": 1026,
+            "name": "Креативное письмо"
+          },
+          {
+            "id": 1027,
+            "name": "Арт-терапия"
+          },
+          {
+            "id": 1028,
+            "name": "Декор и DIY"
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "name": "Иностранные языки",
+        "subcategories": [
+          {
+            "id": 1031,
+            "name": "Английский"
+          },
+          {
+            "id": 1032,
+            "name": "Французский"
+          },
+          {
+            "id": 1033,
+            "name": "Испанский"
+          },
+          {
+            "id": 1034,
+            "name": "Немецкий"
+          },
+          {
+            "id": 1035,
+            "name": "Китайский"
+          },
+          {
+            "id": 1036,
+            "name": "Японский"
+          },
+          {
+            "id": 1037,
+            "name": "Подготовка к экзаменам (IELTS, TOEFL)"
+          }
+        ]
+      },
+      {
+        "id": 104,
+        "name": "Образование и развитие",
+        "subcategories": [
+          {
+            "id": 1041,
+            "name": "Личностное развитие"
+          },
+          {
+            "id": 1042,
+            "name": "Навыки обучения"
+          },
+          {
+            "id": 1043,
+            "name": "Когнитивные техники"
+          },
+          {
+            "id": 1044,
+            "name": "Скорочтение"
+          },
+          {
+            "id": 1045,
+            "name": "Навыки преподавания"
+          },
+          {
+            "id": 1046,
+            "name": "Коучинг"
+          }
+        ]
+      },
+      {
+        "id": 105,
+        "name": "Здоровье и лайфстайл",
+        "subcategories": [
+          {
+            "id": 1051,
+            "name": "Йога и медитация"
+          },
+          {
+            "id": 1052,
+            "name": "Питание и ЗОЖ"
+          },
+          {
+            "id": 1053,
+            "name": "Ментальное здоровье"
+          },
+          {
+            "id": 1054,
+            "name": "Осознанность"
+          },
+          {
+            "id": 1055,
+            "name": "Физические тренировки"
+          },
+          {
+            "id": 1056,
+            "name": "Сон и восстановление"
+          },
+          {
+            "id": 1057,
+            "name": "Баланс жизни и работы"
+          }
+        ]
+      },
+      {
+        "id": 106,
+        "name": "Дом и уют",
+        "subcategories": [
+          {
+            "id": 1061,
+            "name": "Уборка и организация"
+          },
+          {
+            "id": 1062,
+            "name": "Домашние финансы"
+          },
+          {
+            "id": 1063,
+            "name": "Приготовление еды"
+          },
+          {
+            "id": 1064,
+            "name": "Домашние растения"
+          },
+          {
+            "id": 1065,
+            "name": "Ремонт"
+          },
+          {
+            "id": 1066,
+            "name": "Хранение вещей"
+          }
+        ]
+      }
+    ],
+    "cities": [
+      {
+        "id": 201,
+        "name": "Москва"
+      },
+      {
+        "id": 202,
+        "name": "Санкт-Петербург"
+      },
+      {
+        "id": 203,
+        "name": "Новосибирск"
+      },
+      {
+        "id": 204,
+        "name": "Екатеринбург"
+      },
+      {
+        "id": 205,
+        "name": "Казань"
+      },
+      {
+        "id": 206,
+        "name": "Ростов-на-Дону"
+      },
+      {
+        "id": 207,
+        "name": "Нижний Новгород"
+      },
+      {
+        "id": 208,
+        "name": "Челябинск"
+      },
+      {
+        "id": 209,
+        "name": "Самара"
+      },
+      {
+        "id": 210,
+        "name": "Омск"
+      },
+      {
+        "id": 211,
+        "name": "Краснодар"
+      },
+      {
+        "id": 212,
+        "name": "Воронеж"
+      },
+      {
+        "id": 213,
+        "name": "Пермь"
+      },
+      {
+        "id": 214,
+        "name": "Волгоград"
+      },
+      {
+        "id": 215,
+        "name": "Красноярск"
+      },
+      {
+        "id": 216,
+        "name": "Саратов"
+      },
+      {
+        "id": 217,
+        "name": "Тюмень"
+      },
+      {
+        "id": 218,
+        "name": "Тольятти"
+      },
+      {
+        "id": 219,
+        "name": "Ижевск"
+      },
+      {
+        "id": 220,
+        "name": "Барнаул"
+      }
+    ]
+  }
+}

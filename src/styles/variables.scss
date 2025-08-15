@@ -1,0 +1,64 @@
+:root {
+  // fonts
+  --font-family-main: 'Roboto', sans-serif;
+  --font-family-secondary: 'Jost', sans-serif;
+
+  // fonts weight
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+
+  // fonts sizes 
+  --font-size-xs: 12px;
+  --font-size-s: 16px;
+  --font-size-m: 20px;
+  --font-size-l: 24px;
+  --font-size-xl: 32px;
+
+  // fonts line height
+  --font-line-s: 16px;
+  --font-line-m: 24px;
+  --font-line-l: 32px;
+  --font-line-xl: 40px;
+  
+  // ready to use rules
+  --font-caption: var(--font-regular) var(--font-size-xs) / var(--font-line-s) var(--font-family-main);
+  --font-Body: var(--font-regular) var(--font-size-s) / var(--font-line-m) var(--font-family-main);
+  --font-h4: var(--font-medium) var(--font-size-s) / var(--font-line-m) var(--font-family-main);
+  --font-h3: var(--font-medium) var(--font-size-m) / var(--font-line-m) var(--font-family-secondary);
+  --font-h2: var(--font-medium) var(--font-size-l) / var(--font-line-l) var(--font-family-secondary); 
+  --font-h1: var(--font-medium) var(--font-size-xl) / var(--font-line-xl) var(--font-family-secondary); 
+  
+  // fonts colors
+  --font-color-primary: var(--color-primary);
+  --font-color-secondary: var(--color-secondary);
+  --font-color-accent: var(--color-accent);
+  --font-color-error: var(--color-error);
+
+
+  // colors
+  --color-primary: #253017;
+  --color-secondary: #69735D;
+  --color-tertiary: #9CA197;
+  --color-quartary: #FFFFFF;
+  --color-quintary: #E4E8DF;
+  --color-sextary: #B2B9A9; // не исполоьзуется
+
+  --color-accent: #508826;
+  --color-accent-light: #ABD27A;
+  --color-accent-lighten: #DEEBC5;
+
+  --color-error: #BF3920;
+  --color-alarm: #E0796E;
+
+  --bg-color-primary: #F9FAF7;
+  --bg-color-modal-overlay: #8E8E8E99;
+
+  --color-skill-business: #EEE7F7;
+  --color-skill-creativity: #F7E7F2;
+  --color-skill-languages: #EBE5C5;
+  --color-skill-education: #E7F2F6;
+  --color-skill-home: #F7EBE5;
+  --color-skill-health: #E9F7E7;
+  --color-skill-extra: #E8ECF7;
+}

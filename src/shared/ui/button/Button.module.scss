@@ -1,0 +1,82 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.variant-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.variant-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.variant-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.variant-outline {
+  background-color: transparent;
+  border-color: currentcolor;
+}
+
+.size-sm {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+}
+
+.size-md {
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.size-lg {
+  padding: 12px 24px;
+  font-size: 1.125rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.icon {
+  display: inline-flex;
+}
+
+.loader {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.loaderDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentcolor;
+  animation: pulse 1.4s infinite ease-in-out both;
+}
+
+.loaderDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loaderDot:nth-child(3) {
+  animation-delay: 0.4s;
+}

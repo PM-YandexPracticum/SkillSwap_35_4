@@ -8,8 +8,9 @@
 }
 
 .logo {
-  display: inline-flex;
+  display: flex;
   position: absolute;
+  gap: 12px;
   top: 32px;
   left: 36px;
   font: var(--font-h1);

@@ -1,15 +1,12 @@
-// import LogoUI from '../../shared/ui/LogoUI/LogoUI'
+import LogoUI from '../../shared/ui/LogoUI/LogoUI'
 import styles from './index.module.scss'
-
-// TODO: изменить часть с лого когда починят компонент LogoUi
 
 export const Footer: React.FC = () => {
   return (
       <footer className={styles['footer-container']}>
         <div className={styles.logo}>
-          SkillSwap
-          {/* <LogoUI variant='icon'></LogoUI>
-          <LogoUI variant='title'></LogoUI> */}
+          <LogoUI variant='icon'></LogoUI>
+          <LogoUI variant='title'></LogoUI>
         </div>
         <div className={styles.links}>
           <a className={styles.link} href="#">О проекте</a>

@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
       <footer className={styles['footer-container']}>
         <div className={styles.logo}>
           <LogoUI variant='icon'></LogoUI>
-          <LogoUI variant='title'></LogoUI>
+          <LogoUI variant='title' size={32}></LogoUI>
         </div>
         <div className={styles.links}>
           <a className={styles.link} href="#">О проекте</a>

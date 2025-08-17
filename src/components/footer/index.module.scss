@@ -9,12 +9,11 @@
 
 .logo {
   display: flex;
+  align-items: center;
   position: absolute;
   gap: 12px;
   top: 32px;
   left: 36px;
-  font: var(--font-h1);
-  font-weight: var(--font-semibold);
 }
 
 .links {

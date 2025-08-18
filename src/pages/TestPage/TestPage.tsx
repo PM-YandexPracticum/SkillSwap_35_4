@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg?url';
+import reactLogo from '../../assets/react.svg?url';
 import viteLogo from '/vite.svg';
-import './App.css';
+import './TestPage.css';
 
-function App() {
+export const TestPage = () => {
   const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
@@ -30,6 +29,4 @@ function App() {
       </p>
     </>
   );
-}
-
-export default App;
+};

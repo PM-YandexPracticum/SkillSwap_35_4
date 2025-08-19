@@ -1,71 +1,40 @@
-import React from 'react';
+import { useState } from 'react'
+import './header.css'
 
-import { Button } from './Button';
-import './header.css';
-
-type User = {
-  name: string;
-};
-
-export interface HeaderProps {
-  user?: User;
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onCreateAccount?: () => void;
-}
-
-export const Header = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}: HeaderProps) => (
-  <header>
-    <div className="storybook-header">
-      <div>
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
-      </div>
-      <div>
-        {user ? (
-          <>
-            <span className="welcome">
-              Welcome, <b>{user.name}</b>!
-            </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
-          </>
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button
-              primary
-              size="small"
-              onClick={onCreateAccount}
-              label="Sign up"
-            />
-          </>
-        )}
+export const Header: React.FC = () => {
+  const [search, setSearch] = useState('')
+  return (
+    <header className="header">
+    <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="20" fill="#ABD27A"/>
+    <path d="M20 10C20 10 20.5518 15.1499 22.7009 17.2991C24.8501 19.4482 30 20 30 20C30 20 24.8501 20.5518 22.7009 22.7009C20.5518 24.8501 20 30 20 30C20 30 19.4482 24.8501 17.2991 22.7009C15.1499 20.5518 10 20 10 20C10 20 15.1499 19.4482 17.2991 17.2991C19.4482 15.1499 20 10 20 10Z" fill="#F9FAF7"/>
+    </svg>
+    <h3 className="logo_title">SkillSwap</h3>
+    </div>
+    <div style={{display: 'flex', gap: '24px', alignItems: 'center'}}>
+      <p style={{cursor: 'pointer', whiteSpace: 'nowrap'}}>О проекте</p>
+      <div style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
+      <p style={{whiteSpace: 'nowrap'}}>Все навыки</p>
+      <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 7.93539C7.35391 7.93539 6.70782 7.68618 6.21863 7.197L0.20075 1.17912C-0.0669166 0.91145 -0.0669166 0.468416 0.20075 0.20075C0.468416 -0.0669166 0.911451 -0.0669166 1.17912 0.20075L7.197 6.21863C7.64003 6.66167 8.35997 6.66167 8.803 6.21863L14.8209 0.20075C15.0885 -0.0669166 15.5316 -0.0669166 15.7992 0.20075C16.0669 0.468416 16.0669 0.91145 15.7992 1.17912L9.78137 7.197C9.29218 7.68618 8.64609 7.93539 8 7.93539Z" fill="#253017"/>
+      </svg>
       </div>
     </div>
-  </header>
-);
+    <div className='search'>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.5349 21.0698C6.27908 21.0698 2 16.7907 2 11.5349C2 6.27908 6.27908 2 11.5349 2C16.7907 2 21.0698 6.27908 21.0698 11.5349C21.0698 16.7907 16.7907 21.0698 11.5349 21.0698ZM11.5349 3.39535C7.04187 3.39535 3.39535 7.05118 3.39535 11.5349C3.39535 16.0186 7.04187 19.6745 11.5349 19.6745C16.0279 19.6745 19.6745 16.0186 19.6745 11.5349C19.6745 7.05118 16.0279 3.39535 11.5349 3.39535Z" fill="#69735D"/>
+<path d="M21.3024 21.9996C21.1257 21.9996 20.9489 21.9345 20.8094 21.7949L18.9489 19.9345C18.6791 19.6647 18.6791 19.2182 18.9489 18.9484C19.2187 18.6787 19.6652 18.6787 19.935 18.9484L21.7954 20.8089C22.0652 21.0787 22.0652 21.5252 21.7954 21.7949C21.6559 21.9345 21.4791 21.9996 21.3024 21.9996Z" fill="#69735D"/>
+</svg>
+      <input value={search} onChange={(e) => setSearch(e.target.value)} className='search-input' placeholder='Искать навык'/>
+    </div>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.4255 22C12.2674 22 12.1092 22 11.9511 21.9907C6.74232 21.7582 2.38925 17.5632 2.02649 12.4474C1.71024 8.05715 4.24954 3.95522 8.34216 2.23446C9.50484 1.75078 10.1187 2.12284 10.3792 2.39258C10.6396 2.65302 11.0024 3.25762 10.5187 4.36449C10.0908 5.35044 9.8769 6.4015 9.8862 7.48047C9.90481 11.601 13.3277 15.0983 17.5041 15.2658C18.1087 15.2937 18.704 15.2472 19.2806 15.1448C20.5084 14.9216 21.02 15.4146 21.2153 15.7308C21.4107 16.0471 21.6339 16.7261 20.8898 17.7306C18.9179 20.4281 15.7833 22 12.4255 22ZM3.41241 12.3451C3.72866 16.7726 7.50504 20.4002 12.0069 20.5955C15.0671 20.7443 17.9691 19.3491 19.755 16.9121C19.8945 16.7168 19.9597 16.5773 19.9876 16.5029C19.9038 16.4936 19.755 16.4843 19.5225 16.5308C18.8435 16.6517 18.1366 16.6982 17.439 16.6703C12.5278 16.475 8.50959 12.3544 8.48169 7.49907C8.48169 6.21547 8.73283 4.97838 9.2444 3.8157C9.33742 3.61107 9.35602 3.47155 9.36532 3.39714C9.28161 3.39714 9.13279 3.41574 8.89095 3.51806C5.3471 5.00629 3.15197 8.55943 3.41241 12.3451Z" fill="#253017"/>
+</svg>
+<div style={{display: 'flex', gap: '8px'}}>
+  <button className='login'>Войти</button>
+  <button className='register'>Зарегестрироваться</button>
+</div>
+    </header>
+  )
+}

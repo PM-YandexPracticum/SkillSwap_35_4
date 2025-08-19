@@ -1,32 +1,54 @@
-.storybook-header {
+.header {
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(0 0 0 / 10%);
-  padding: 15px 20px;
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  gap: 32px;
 }
 
-.storybook-header svg {
-  display: inline-block;
-  vertical-align: top;
+.logo_title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  font-family: 'Jost';
 }
 
-.storybook-header h1 {
-  display: inline-block;
-  vertical-align: top;
-  margin: 6px 0 6px 10px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
+.search {
+  width: 527px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding-left: 12px;
 }
 
-.storybook-header button + button {
-  margin-left: 10px;
+.search-input {
+  width: 500px;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  font-family: 'Roboto';
+  font-weight: 400;
 }
 
-.storybook-header .welcome {
-  margin-right: 10px;
-  color: #333;
-  font-size: 14px;
+.login {
+  width: 92px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  border: 1px solid #ABD27A;
+  color: 253017;
+}
+
+.register {
+  width: 208px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #ABD27A;
+  color: #253017;
 }

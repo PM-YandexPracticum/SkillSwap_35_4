@@ -1,0 +1,42 @@
+.footer-container {
+  width: 100%;
+  min-height: 232px;
+  background-color: var(--bg-color-secondary);
+  color: var(--font-color-primary);
+  font-family: var(--font-family-main);
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  gap: 12px;
+  top: 32px;
+  left: 36px;
+}
+
+.links {
+  padding-top: 92px;
+  width: 75%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
+  justify-self: right;
+  align-items: center;
+}
+
+.link  {
+  margin: 0 24px 12px 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.caption {
+  display: block;
+  position: absolute;
+  bottom: 32px;
+  left: 36px;
+  margin: 0;
+  font: var(--font-caption);
+  color: var(--font-color-secondary);
+}

@@ -1,9 +1,10 @@
-import { skillsTypes } from '../../shared/constants/skillsTypes/skillsTypes';
-
-export type SkillType = keyof typeof skillsTypes;
+import {
+  skillsConfig,
+  type SkillType,
+} from '../../shared/constants/skills/skills.config';
 
 export type SkillSubcategory<C extends SkillType> =
-  (typeof skillsTypes)[C][number];
+  (typeof skillsConfig)[C]['items'][number];
 
 export interface BaseSkill<C extends SkillType = SkillType> {
   category: C;
@@ -18,7 +19,8 @@ export type Skill = {
 export type CustomSkill = {
   [C in SkillType]: BaseSkill<C> & {
     name: string;
-    image: string[] | File[];
+    images: string[] | File[];
+
     description: string;
     customSkillId: string;
   };

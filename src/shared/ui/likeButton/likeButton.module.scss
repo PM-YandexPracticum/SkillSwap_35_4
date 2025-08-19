@@ -1,0 +1,23 @@
+.like-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: var(--color-primary);
+  background-size: 24px 24px;
+  mask: url('../../../assets/icons/likeButton/likeButton.svg') no-repeat center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-accent-light);
+    opacity: 0.6;
+  }
+
+  &--active {
+    background-color: var(--color-accent-light);
+    mask: url('../../../assets/icons/likeButton/likeButton.svg') no-repeat
+      center;
+  }
+}

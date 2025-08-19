@@ -1,0 +1,62 @@
+.title {
+  margin: 0;
+  letter-spacing: -0.11em;
+  vertical-align: middle;
+  font-family: var(--font-family-secondary);
+
+  &.variant-h1 {
+    font: var(--font-h1);
+  }
+
+  &.variant-h2 {
+    font: var(--font-h2);
+  }
+
+  &.variant-h3 {
+    font: var(--font-h3);
+  }
+
+  &.variant-h4 {
+    font: var(--font-h4);
+  }
+
+  &.color-primary {
+    color: var(--font-color-primary);
+  }
+
+  &.color-secondary {
+    color: var(--font-color-secondary);
+  }
+
+  &.color-accent {
+    color: var(--font-color-accent);
+  }
+
+  &.color-error {
+    color: var(--font-color-error);
+  }
+
+  &.align-left {
+    text-align: left;
+  }
+
+  &.align-center {
+    text-align: center;
+  }
+
+  &.align-right {
+    text-align: right;
+  }
+
+  &.weight-regular {
+    font-weight: var(--font-regular);
+  }
+
+  &.weight-medium {
+    font-weight: var(--font-medium);
+  }
+
+  &.weight-semibold {
+    font-weight: var(--font-semibold);
+  }
+}

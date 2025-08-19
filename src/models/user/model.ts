@@ -1,6 +1,7 @@
 import { type Skill, type CustomSkill } from '../skill/model';
 
 export type Timestamp = string | number | Date;
+
 export type UserSkill =
   | (Skill & { id: string | number })
   | (CustomSkill & { subcategoryId: string | number });

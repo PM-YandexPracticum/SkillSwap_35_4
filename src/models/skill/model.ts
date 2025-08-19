@@ -20,6 +20,7 @@ export type CustomSkill = {
   [C in SkillType]: BaseSkill<C> & {
     name: string;
     images: string[] | File[];
+
     description: string;
     customSkillId: string;
   };

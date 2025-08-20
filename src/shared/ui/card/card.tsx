@@ -9,6 +9,7 @@ import {
   getSkillKey,
   getSkillName,
 } from '../../utils/skillTypeHelper';
+import { Title } from '../title/Title';
 
 // заглушка для обмена
 const useExchange = () => ({
@@ -55,7 +56,9 @@ export const Card: React.FC<CardProps> = ({
         )}
 
         <div className={styles['card-user-info']}>
-          <p className={styles['card-username']}>{name}</p>
+          <Title as="h3" weight="medium" className={styles['card-username']}>
+            {name}
+          </Title>
           {variant === 'list' ? (
             <p className={styles['card-user-meta']}>
               {location}

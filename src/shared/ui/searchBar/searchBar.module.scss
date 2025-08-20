@@ -34,3 +34,7 @@
   background-color: var(--color-tertiary);
   border-radius: 10%;
 }
+
+input::placeholder {
+  color: var(--font-color-secondary);
+}

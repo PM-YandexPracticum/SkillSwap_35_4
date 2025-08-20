@@ -13,7 +13,7 @@ import type {
 } from './types';
 import clsx from 'clsx';
 import styles from './Autocomplete.module.scss';
-import { Input } from '../../../shared/ui/input/Input';
+import { Input } from '../../shared/ui/input/Input';
 
 export const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps>(
   (

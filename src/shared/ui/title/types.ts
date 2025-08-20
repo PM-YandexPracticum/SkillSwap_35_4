@@ -9,7 +9,7 @@ export interface TitleProps {
   /** Дополнительные классы */
   className?: string;
   /** Дочерние элементы */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Выравнивание текста */
   align?: 'left' | 'center' | 'right';
   /** Начертание шрифта */

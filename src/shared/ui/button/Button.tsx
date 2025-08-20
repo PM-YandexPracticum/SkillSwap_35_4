@@ -4,7 +4,17 @@ import { clsx } from 'clsx';
 import type { ButtonProps } from './types';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', text, className, disabled }, ref) => {
+  (
+    {
+      variant = 'primary',
+      size = 'md',
+      children,
+      className,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
@@ -12,14 +22,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           styles[`variant-${variant}`],
           styles[`size-${size}`],
-          {
-            [styles.disabled]: disabled,
-          },
+          { [styles.disabled]: disabled },
           className,
         )}
         disabled={disabled}
+        {...props}
       >
-        {text}
+        {children}
       </button>
     );
   },

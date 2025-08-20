@@ -17,7 +17,7 @@
 }
 
 .variant-primary {
-  background-color: var(--color-accent);
+  background-color: var(--color-accent-light);
   color: var(--color-primary);
 
   &:hover {
@@ -27,7 +27,7 @@
 
   &:active,
   &.pressed {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-light);
     color: var(--color-quartary);
   }
 

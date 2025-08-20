@@ -1,7 +1,7 @@
 import React from 'react';
 import type { CardProps } from './types';
 import { Skill } from '../skill/skill';
-import { Button } from '../../../stories/Button';
+import { Button } from '../button/index';
 import { LikeButton } from '../likeButton/likeButton';
 import styles from './card.module.scss';
 import {
@@ -111,12 +111,20 @@ export const Card: React.FC<CardProps> = ({
       {showDetails &&
         (alreadyRequested ? (
           <Button
-            label="Обмен предложен"
-            primary={false}
+            variant="secondary"
             onClick={onDetailsClick}
-          />
+            className={styles['card-button']}
+          >
+            Обмен предложен
+          </Button>
         ) : (
-          <Button label="Подробнее" primary onClick={onDetailsClick} />
+          <Button
+            variant="primary"
+            onClick={onDetailsClick}
+            className={styles['card-button']}
+          >
+            Подробнее
+          </Button>
         ))}
     </div>
   );

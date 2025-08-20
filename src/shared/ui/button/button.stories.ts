@@ -19,7 +19,7 @@ const meta = {
       options: ['sm', 'md', 'lg'],
       description: 'Размер кнопки',
     },
-    text: {
+    children: {
       control: 'text',
       description: 'Текст кнопки',
     },
@@ -30,7 +30,7 @@ const meta = {
   },
   args: {
     onClick: () => console.log('Button clicked'),
-    text: 'Button',
+    children: 'Button',
   },
 } satisfies Meta<typeof Button>;
 
@@ -41,14 +41,14 @@ export const Primary: Story = {
   args: {
     variant: 'primary',
     size: 'md',
-    text: 'Primary Button',
+    children: 'Primary Button',
   },
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    text: 'Secondary Button',
+    children: 'Secondary Button',
   },
 };
 
@@ -56,7 +56,7 @@ export const Small: Story = {
   args: {
     variant: 'primary',
     size: 'sm',
-    text: 'Small Button',
+    children: 'Small Button',
   },
 };
 
@@ -64,14 +64,14 @@ export const Large: Story = {
   args: {
     variant: 'primary',
     size: 'lg',
-    text: 'Large Button',
+    children: 'Large Button',
   },
 };
 
 export const Disabled: Story = {
   args: {
     variant: 'primary',
-    text: 'Disabled Button',
+    children: 'Disabled Button',
     disabled: true,
   },
 };
@@ -81,7 +81,7 @@ export const PrimarySmall: Story = {
   args: {
     variant: 'primary',
     size: 'sm',
-    text: 'Primary Small',
+    children: 'Primary Small',
   },
 };
 
@@ -89,14 +89,14 @@ export const SecondaryLarge: Story = {
   args: {
     variant: 'secondary',
     size: 'lg',
-    text: 'Secondary Large',
+    children: 'Secondary Large',
   },
 };
 
 export const DisabledSecondary: Story = {
   args: {
     variant: 'secondary',
-    text: 'Disabled Secondary',
+    children: 'Disabled Secondary',
     disabled: true,
   },
 };

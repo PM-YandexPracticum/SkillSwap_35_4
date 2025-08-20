@@ -4,21 +4,7 @@ import { clsx } from 'clsx';
 import type { ButtonProps } from './types';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      variant = 'primary',
-      size = 'md',
-      loading = false,
-      fullWidth = false,
-      startIcon,
-      endIcon,
-      className,
-      children,
-      disabled,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ variant = 'primary', size = 'md', text, className, disabled }, ref) => {
     return (
       <button
         ref={ref}
@@ -27,25 +13,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           styles[`variant-${variant}`],
           styles[`size-${size}`],
           {
-            [styles.loading]: loading,
-            [styles.fullWidth]: fullWidth,
+            [styles.disabled]: disabled,
           },
           className,
         )}
-        disabled={disabled || loading}
-        aria-busy={loading}
-        {...props}
+        disabled={disabled}
       >
-        {startIcon && <span className={styles.icon}>{startIcon}</span>}
-        {children}
-        {endIcon && <span className={styles.icon}>{endIcon}</span>}
-        {loading && (
-          <span className={styles.loader} aria-hidden="true">
-            <span className={styles.loaderDot} />
-            <span className={styles.loaderDot} />
-            <span className={styles.loaderDot} />
-          </span>
-        )}
+        {text}
       </button>
     );
   },

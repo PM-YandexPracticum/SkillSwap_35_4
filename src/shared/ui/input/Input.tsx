@@ -33,22 +33,42 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-// готовый инпут для текста
-export const InputText = forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => <Input ref={ref} type="text" {...props} />,
+// готовый инпут для email
+export const InputEmail = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => (
+    <Input ref={ref} type="email" autoComplete="email" {...props} />
+  ),
 );
 
 // готовый инпут для пароля
 export const InputPassword = forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => <Input ref={ref} type="password" {...props} />,
+  (props, ref) => (
+    <Input
+      ref={ref}
+      type="password"
+      autoComplete="current-password"
+      {...props}
+    />
+  ),
 );
 
 // готовый инпут для даты
 export const InputDate = forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => <Input ref={ref} type="date" {...props} />,
+  (props, ref) => (
+    <Input ref={ref} type="date" autoComplete="bday" {...props} />
+  ),
 );
 
-// готовый инпут для email
-export const InputEmail = forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => <Input ref={ref} type="email" {...props} />,
+// готовый инпут для имени
+export const InputName = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => (
+    <Input ref={ref} type="text" autoComplete="name" {...props} />
+  ),
+);
+
+// готовый инпут для поиска (без автозаполнения)
+export const InputSearch = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => (
+    <Input ref={ref} type="search" autoComplete="off" {...props} />
+  ),
 );

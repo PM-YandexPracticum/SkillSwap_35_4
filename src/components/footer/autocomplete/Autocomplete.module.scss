@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.autocompleteInput {
+  .inputContainer {
+    border-radius: 12px;
+    border: 1px solid #fff;
+  }
+
+  .input {
+    border: none;
+    outline: none;
+    padding: 20px;
+    font-size: var(--font-caption);
+    width: 100%;
+
+    &::placeholder {
+      color: var(--color-secondary);
+    }
+  }
+}
+
+.searchIcon {
+  width: 24px;
+  padding: 12px;
+}

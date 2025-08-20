@@ -1,48 +1,26 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 import styles from './Input.module.scss';
 import type { InputProps } from './types';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      variant = 'default',
-      inputSize = 'medium',
-      label,
-      error,
-      errorMessage,
-      icon,
-      type = 'text',
-      ...props
-    },
-    ref,
-  ) => {
-    const [isFocused, setIsFocused] = useState(false);
-
+  ({ className, label, error, errorMessage, icon, type, ...props }, ref) => {
     const renderInput = () => (
       <div
-        className={clsx(
-          styles.inputContainer,
-          styles[`variant-${variant}`],
-          styles[`size-${inputSize}`],
-          {
-            [styles.focused]: isFocused,
-            [styles.error]: error,
-          },
-        )}
+        className={clsx(styles.inputContainer, {
+          [styles.error]: error,
+        })}
       >
         {icon && <div className={styles.icon}>{icon}</div>}
         <input
           ref={ref}
           type={type}
           className={clsx(styles.input, className)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
           {...props}
         />
       </div>
     );
+
     return (
       <div className={styles.wrapper}>
         {label && <label className={styles.label}>{label}</label>}
@@ -55,10 +33,22 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
+// готовый инпут для текста
 export const InputText = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => <Input ref={ref} type="text" {...props} />,
 );
 
+// готовый инпут для пароля
 export const InputPassword = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => <Input ref={ref} type="password" {...props} />,
+);
+
+// готовый инпут для даты
+export const InputDate = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => <Input ref={ref} type="date" {...props} />,
+);
+
+// готовый инпут для email
+export const InputEmail = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => <Input ref={ref} type="email" {...props} />,
 );

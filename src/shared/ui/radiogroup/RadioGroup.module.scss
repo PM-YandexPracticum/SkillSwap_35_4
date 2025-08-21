@@ -14,8 +14,8 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--font-size-s);
+  line-height: var(--font-line-m);
   color: var(--font-color-primary);
   transition: color 0.2s ease;
 

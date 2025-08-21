@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import styles from './ModalUI.module.scss';
 import Overlay from '../overlay/overlay';
-import type { ModalUIProps } from './type';
+import type { ModalUIProps } from './types';
 
 export const ModalUI: React.FC<ModalUIProps> = ({
   openModal,

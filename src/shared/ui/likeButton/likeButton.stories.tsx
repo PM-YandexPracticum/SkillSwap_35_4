@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { LikeButton } from './likeButton';
+import React from 'react';
 
 const meta: Meta<typeof LikeButton> = {
   title: 'Shared/LikeButton',
@@ -25,8 +26,14 @@ export const Active: Story = {
 };
 
 export const WithClick: Story = {
-  args: {
-    active: false,
-    onClick: () => alert('Clicked!'),
+  render: (args) => {
+    const [active, setActive] = React.useState(false);
+    return (
+      <LikeButton
+        {...args}
+        active={active}
+        onClick={() => setActive(!active)}
+      />
+    );
   },
 };

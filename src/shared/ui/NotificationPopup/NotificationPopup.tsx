@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './NotificationPopup.module.scss';
 import { IconButton } from '../iconButton/iconButton';
-import CloseIcon from '../../../assets/icons/common/x.svg?url';
-import IdeaIcon from '../../../assets/icons/notification/idea.svg?url';
+import CloseIcon from '../../assets/icons/cross.svg?url';
+import IdeaIcon from '../../assets/icons/idea.svg?url';
 
 export type NotificationPopupProps = {
   message: string;

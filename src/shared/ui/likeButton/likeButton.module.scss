@@ -4,20 +4,19 @@
   border: none;
   margin: 0;
   padding: 0;
-  background: var(--color-primary);
+  background: transparent;
   background-size: 24px 24px;
-  mask: url('../../../assets/icons/likeButton/likeButton.svg') no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: opacity 0.3s;
+  background-image: url('../../assets/icons/like-empty.svg');
 
   &:hover {
-    background-color: var(--color-accent-light);
     opacity: 0.6;
   }
 
   &--active {
-    background-color: var(--color-accent-light);
-    mask: url('../../../assets/icons/likeButton/likeButton.svg') no-repeat
-      center;
+    background-image: url('../../assets/icons/like-active.svg');
   }
 }

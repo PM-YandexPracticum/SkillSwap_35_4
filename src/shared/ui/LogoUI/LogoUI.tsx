@@ -1,7 +1,7 @@
 import React from 'react';
 
-import logoUrl from '../../../assets/icons/skillsTypes/logo.svg?url';
-import titleUrl from '../../../assets/icons/skillsTypes/SkillSwap.svg?url';
+import logoUrl from '../../assets/icons/logo.svg?url';
+import titleUrl from '../../assets/icons/SkillSwap.svg?url';
 import type { LogoUIProps } from './type';
 
 export const LogoUI: React.FC<LogoUIProps> = ({

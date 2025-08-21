@@ -1,0 +1,1 @@
+export { BlockSimilarOffers } from './BlockSimilarOffers';

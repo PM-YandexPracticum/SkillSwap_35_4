@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import LogoUI from './LogoUI';
+import LogoUI from './logoUI';
 
 const meta: Meta<typeof LogoUI> = {
   title: 'Shared/Logo',

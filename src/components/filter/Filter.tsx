@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Filter } from '../../shared/ui/filter';
+import { Filter } from '../../features/filter';
 import {
   ACTIVITY_OPTIONS,
   GENDER_OPTIONS,

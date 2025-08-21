@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { TestPage } from '../pages/TestPage/TestPage';
+import { TestPage } from '../pages/testPage/testPage';
 import style from './App.module.scss';
 import { MainLayout } from './layouts/MainLayout';
 import { AuthLayout } from './layouts/AuthLayout';

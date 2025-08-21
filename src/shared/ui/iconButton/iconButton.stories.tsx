@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconButton } from './iconButton';
-import MoonIcon from '../../../assets/icons/themeType/moon.svg';
-import SunIcon from '../../../assets/icons/themeType/sun.svg';
+import MoonIcon from '../../assets/icons/moon.svg';
+import SunIcon from '../../assets/icons/sun.svg';
 import { fn } from 'storybook/test';
 
 const meta = {

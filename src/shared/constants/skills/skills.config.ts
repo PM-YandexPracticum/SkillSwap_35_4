@@ -35,7 +35,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Предпринимательство',
     ],
     color: getCSSVariable('--color-skill-business'),
-    icon: '/src/assets/icons/skillsTypes/briefcase.svg',
+    icon: '/src/shared/assets/icons/briefcase.svg',
   },
 
   'Иностранные языки': {
@@ -50,7 +50,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Подготовка к экзаменам (IELTS, TOEFL)',
     ],
     color: getCSSVariable('--color-skill-languages'),
-    icon: '/src/assets/icons/skillsTypes/global.svg',
+    icon: '/src/shared/assets/icons/global.svg',
   },
 
   'Дом и уют': {
@@ -64,7 +64,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Хранение вещей',
     ],
     color: getCSSVariable('--color-skill-home'),
-    icon: '/src/assets/icons/skillsTypes/home.svg',
+    icon: '/src/shared/assets/icons/home.svg',
   },
 
   'Творчество и искусство': {
@@ -80,7 +80,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Декор и DIY',
     ],
     color: getCSSVariable('--color-skill-creativity'),
-    icon: '/src/assets/icons/skillsTypes/palette.svg',
+    icon: '/src/shared/assets/icons/palette.svg',
   },
 
   'Образование и развитие': {
@@ -94,7 +94,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Коучинг',
     ],
     color: getCSSVariable('--color-skill-education'),
-    icon: '/src/assets/icons/skillsTypes/book.svg',
+    icon: '/src/shared/assets/icons/book.svg',
   },
 
   'Здоровье и лайфстайл': {
@@ -109,7 +109,7 @@ export const skillsConfig: Record<SkillType, SkillMeta> = {
       'Баланс жизни и работы',
     ],
     color: getCSSVariable('--color-skill-health'),
-    icon: '/src/assets/icons/skillsTypes/lifestyle.svg',
+    icon: '/src/shared/assets/icons/lifestyle.svg',
   },
 
   'Остальные категории': {

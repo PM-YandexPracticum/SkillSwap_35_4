@@ -1,4 +1,4 @@
-import type { FilterOption, CheckboxItem } from '../../shared/ui/filter';
+import type { FilterOption, CheckboxItem } from '../../features/filter';
 
 export const ACTIVITY_OPTIONS: FilterOption[] = [
   { value: 'all', label: 'Всё' },

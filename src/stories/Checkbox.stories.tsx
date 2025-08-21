@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox } from '../shared/ui/checkbox/Checkbox';
+import { Checkbox } from '../shared/ui/checkbox/checkbox';
 import { useState } from 'react';
 
 const meta: Meta<typeof Checkbox> = {
@@ -24,7 +24,7 @@ export const Unchecked: Story = {
   ...Template,
   args: {
     label: 'Невыбранный чекбокс',
-    checked: false,
+    checked: true,
   },
 };
 

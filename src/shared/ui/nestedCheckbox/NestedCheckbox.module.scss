@@ -1,5 +1,9 @@
 @import '../../../styles/variables.scss';
 
+html {
+  font: var(--font-regular);
+}
+
 .nestedCheckbox {
   display: flex;
   flex-direction: column;

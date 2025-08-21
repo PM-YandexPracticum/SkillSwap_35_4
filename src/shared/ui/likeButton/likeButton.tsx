@@ -18,6 +18,8 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       className={`${styles['like-button']} ${
         active ? styles['like-button--active'] : ''
       } ${className}`}
+      aria-pressed={active}
+      aria-label="Добавить в избранное"
     />
   );
 };

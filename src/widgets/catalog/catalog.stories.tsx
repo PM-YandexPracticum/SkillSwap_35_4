@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Catalog } from './index';
 
 const meta: Meta<typeof Catalog> = {
-  title: 'Components/Catalog',
+  title: 'Widgets/Catalog',
   component: Catalog,
 };
 

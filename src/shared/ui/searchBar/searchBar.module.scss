@@ -1,17 +1,18 @@
 .search-bar {
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 12px;
+  padding: 36px 0 20px;
   color: var(--font-color-secondary);
   font: var(--font-body);
-  border-radius: 12px;
 }
 
 .search-bar input {
+  width: 527px;
+  height: 48px;
   border: none;
-  padding-left: 8px;
   color: var(--font-color-primary);
+  border-radius: 12px;
+  padding-left: 8px;
   font: inherit;
 }
 

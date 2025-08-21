@@ -5,8 +5,8 @@ import type { CustomSkill } from '../../models/skill/model';
 import { Card } from '../../shared/ui/card/card';
 import { skillsConfig } from '../../shared/constants/skills/skills.config';
 import { Button } from '../../shared/ui/button/Button';
-import { chevronRight } from '../../shared/ui/icons/chevron-right.svg?url';
-import { sort } from '../../shared/ui/icons/sort.svg?url';
+import chevronRight from '../../shared/accets/icons/chevron-right.svg?url';
+import sort from '../../shared/accets/icons/sort.svg?url';
 
 type cardType = (typeof data.users)[number];
 
@@ -19,7 +19,7 @@ const DEFAULT_SUBCATEGORY = skillsConfig[DEFAULT_CATEGORY].items[0];
 type CatalogProps = {
   title: string;
   moreBtn: boolean;
-  moreBtnType: 'viewAll' | 'sort';
+  moreBtnType?: 'viewAll' | 'sort';
   data: cardType[];
 };
 
@@ -71,11 +71,11 @@ export const Catalog: React.FC<CatalogProps> = ({
     <div className={style.catalog}>
       <div className={style.header}>
         <h2 className={style.title}>{title}</h2>
-        {moreBtn && moreBtnType === 'viewAll' ? (
-          <Button endIcon={chevronRight}>{'Смотреть все'}</Button>
-        ) : (
-          <Button startIcon={sort}>{'Сначала новые'}</Button>
-        )}
+        {moreBtn && (moreBtnType === 'viewAll' ? (
+          <Button>{'Смотреть все'} <img src={chevronRight} alt="chevron right" /></Button>
+        ) : (moreBtnType === 'sort' ? (
+          <Button ><img src={sort} alt="sort" /> {'Сначала новые'}</Button>
+        ) : null))}
       </div>
       <div className={style.items}>
         {data.map((cardData) => (

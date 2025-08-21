@@ -16,6 +16,7 @@ export const Default: Story = {
   args: {
     title: 'Catalog',
     moreBtn: true,
+    moreBtnType: 'viewAll',
     data: data.users,
   },
 };
@@ -24,6 +25,13 @@ export const WithSortButton: Story = {
     title: 'Catalog with Sort Button',
     moreBtn: true,
     moreBtnType: 'sort',
+    data: data.users,
+  },
+};
+export const WithNoButton: Story = {
+  args: {
+    title: 'Catalog with no Button',
+    moreBtn: false,
     data: data.users,
   },
 };

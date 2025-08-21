@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .wrapper {
-  width: 100%;
+  width: auto;
   margin: 16px 0;
 }
 
@@ -31,7 +31,7 @@
 .inputContainer {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: auto;
   border-radius: 12px;
   transition: all 0.2s ease;
   border: 1px solid var(--color-secondary);

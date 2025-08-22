@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import type { CollapsibleListProps } from './types';
 import clsx from 'clsx';
 import styles from './CollapsibleList.module.scss';
-import { Button } from '../button/button';
+import { Button } from '../button/Button';
+import chevronDown from '../../assets/icons/chevronDown.svg?url';
 
 export const CollapsibleList = React.forwardRef<
   HTMLButtonElement,
@@ -57,7 +58,7 @@ export const CollapsibleList = React.forwardRef<
                     [styles.arrowUp]: isExpanded,
                   })}
                 >
-                  ▼
+                  <img src={chevronDown} alt="Стрелочка вниз" />
                 </span>
               )}
             </>

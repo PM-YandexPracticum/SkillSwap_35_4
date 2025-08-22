@@ -1,11 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { RadioGroup } from '../../shared/ui/radiogroup';
 import { Title } from '../../shared/ui/title/title';
 import { NestedCheckbox } from '../../shared/ui/nestedCheckbox';
 import { Checkbox } from '../../shared/ui/checkbox';
 import styles from './Filter.module.scss';
-import { CollapsibleList } from '../../shared/ui/collapsibleList/collapsibleList';
 
 export interface FilterOption {
   value: string;
@@ -54,12 +54,12 @@ export const Filter: React.FC<FilterProps> = ({
   cities,
   className,
 }) => {
-  const DropdownPlaceholder = ({ label }: { label: string }) => (
-    <div className={styles.dropdownPlaceholder}>
-      {label}
-      <span className={styles.dropdownArrow}>▼</span>
-    </div>
-  );
+  const [showAllSkills, setShowAllSkills] = useState(false);
+  const [showAllCities, setShowAllCities] = useState(false);
+
+  const visibleSkills = showAllSkills ? skills.items : skills.items.slice(0, 4);
+
+  const visibleCities = showAllCities ? cities.items : cities.items.slice(0, 4);
 
   return (
     <div className={clsx(styles.filter, className)}>
@@ -83,7 +83,7 @@ export const Filter: React.FC<FilterProps> = ({
         </Title>
 
         <div className={styles.nestedCheckboxGroup}>
-          {skills.items.map((skill) => (
+          {visibleSkills.map((skill) => (
             <NestedCheckbox
               key={skill.id}
               item={skill}
@@ -94,10 +94,16 @@ export const Filter: React.FC<FilterProps> = ({
           ))}
         </div>
 
-        <CollapsibleList
-          mode="categories"
-          items={['Дизайн', 'Программирование', 'Маркетинг', 'Аналитика']}
-        ></CollapsibleList>
+        {skills.items.length > 4 && (
+          <button
+            className={styles.showAllButton}
+            onClick={() => setShowAllSkills(!showAllSkills)}
+            type="button"
+          >
+            {showAllSkills ? 'Свернуть' : 'Все категории'}
+            <span className={styles.arrow}>{showAllSkills ? '▲' : '▼'}</span>
+          </button>
+        )}
       </div>
 
       <div className={styles.filterSection}>
@@ -120,7 +126,7 @@ export const Filter: React.FC<FilterProps> = ({
         </Title>
 
         <div className={styles.checkboxGroup}>
-          {cities.items.map((city) => (
+          {visibleCities.map((city) => (
             <Checkbox
               key={city.id}
               label={city.label}
@@ -135,10 +141,17 @@ export const Filter: React.FC<FilterProps> = ({
             />
           ))}
         </div>
-        <CollapsibleList
-          mode="cities"
-          items={['Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск']}
-        />
+
+        {cities.items.length > 4 && (
+          <button
+            className={styles.showAllButton}
+            onClick={() => setShowAllCities(!showAllCities)}
+            type="button"
+          >
+            {showAllCities ? 'Свернуть' : 'Все города'}
+            <span className={styles.arrow}>{showAllCities ? '▲' : '▼'}</span>
+          </button>
+        )}
       </div>
     </div>
   );

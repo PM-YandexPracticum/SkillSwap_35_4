@@ -1,11 +1,19 @@
 import { Button } from '../../shared/ui/button'
 import { IconButton } from '../../shared/ui/iconButton'
-import { Input } from '../../shared/ui/input/Input'
 import { LogoUI } from '../../shared/ui/LogoUI'
+import { SearchBar } from '../../shared/ui/searchBar'
 import { Title } from '../../shared/ui/title/Title'
 import styles from './index.module.scss'
+import MoonIcon from '../../assets/icons/themeType/moon.svg?url'
+import SunIcon from '../../assets/icons/themeType/sun.svg?url'
+import { useState } from 'react'
+
 
 export const Header: React.FC = () => {
+    const [theme, setTheme] = useState(true)
+    const themeToggle = () => {
+        setTheme(!theme)
+    }
     return (
         <header className={styles.header}>
         <div style={{display: 'flex', gap: '12px'}}>
@@ -19,16 +27,9 @@ export const Header: React.FC = () => {
 </svg>
 </div>
         </div>
-        <Input placeholder='Искать навык' label='' className={styles.search} icon={<svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M9.53491 19.0698C4.27908 19.0698 0 14.7907 0 9.53491C0 4.27908 4.27908 0 9.53491 0C14.7907 0 19.0698 4.27908 19.0698 9.53491C19.0698 14.7907 14.7907 19.0698 9.53491 19.0698ZM9.53491 1.39535C5.04187 1.39535 1.39535 5.05118 1.39535 9.53491C1.39535 14.0186 5.04187 17.6745 9.53491 17.6745C14.0279 17.6745 17.6745 14.0186 17.6745 9.53491C17.6745 5.05118 14.0279 1.39535 9.53491 1.39535Z" fill="#69735D"/>
-  <path d="M19.3024 20C19.1257 20 18.9489 19.9348 18.8094 19.7953L16.9489 17.9348C16.6791 17.6651 16.6791 17.2186 16.9489 16.9488C17.2187 16.679 17.6652 16.679 17.935 16.9488L19.7954 18.8093C20.0652 19.079 20.0652 19.5255 19.7954 19.7953C19.6559 19.9348 19.4791 20 19.3024 20Z" fill="#69735D"/>
-</svg>
-}/>
+       <SearchBar className={styles.search} onSearch={() => {}} placeholder='Искать навык'/>
 
-<IconButton><svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12.4255 22C12.2674 22 12.1092 22 11.9511 21.9907C6.74232 21.7582 2.38925 17.5632 2.02649 12.4474C1.71024 8.05715 4.24954 3.95522 8.34216 2.23446C9.50484 1.75078 10.1187 2.12284 10.3792 2.39258C10.6396 2.65302 11.0024 3.25762 10.5187 4.36449C10.0908 5.35044 9.8769 6.4015 9.8862 7.48047C9.90481 11.601 13.3277 15.0983 17.5041 15.2658C18.1087 15.2937 18.704 15.2472 19.2806 15.1448C20.5084 14.9216 21.02 15.4146 21.2153 15.7308C21.4107 16.0471 21.6339 16.7261 20.8898 17.7306C18.9179 20.4281 15.7833 22 12.4255 22ZM3.41241 12.3451C3.72866 16.7726 7.50504 20.4002 12.0069 20.5955C15.0671 20.7443 17.9691 19.3491 19.755 16.9121C19.8945 16.7168 19.9597 16.5773 19.9876 16.5029C19.9038 16.4936 19.755 16.4843 19.5225 16.5308C18.8435 16.6517 18.1366 16.6982 17.439 16.6703C12.5278 16.475 8.50959 12.3544 8.48169 7.49907C8.48169 6.21547 8.73283 4.97838 9.2444 3.8157C9.33742 3.61107 9.35602 3.47155 9.36532 3.39714C9.28161 3.39714 9.13279 3.41574 8.89095 3.51806C5.3471 5.00629 3.15197 8.55943 3.41241 12.3451Z" 
-    fill="#253017"/>
-</svg></IconButton>
+<IconButton onClick={themeToggle}><img src={theme ? MoonIcon : SunIcon} alt='theme'/></IconButton>
 
 <div style={{display: 'flex', gap: '8px'}}>
     <Button className={styles.btn_log}>Войти</Button>

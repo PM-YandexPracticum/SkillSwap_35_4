@@ -10,7 +10,7 @@ type SearchBarProps = {
   onSearch: () => void;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, className }) => {
 
   const [searchTerm, setSearchTerm] = React.useState('');
   const input = document.getElementById('search-input') as HTMLInputElement;
@@ -27,13 +27,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) =
   };
 
   return (
-    <div className={style['search-bar']}>
+    <div className={`${style['search-bar']} ${className || ''}`}>
+      <div style={{display: 'flex'}}>
       <IconButton id='search-button' onClick={onSearch} type='button' aria-label='Search'>
         <img src={searchIcon} alt="Search" />
       </IconButton>
       <form onSubmit={(e) => { e.preventDefault(); onSearch(); }}>
         <input id='search-input' onInput={checkInput} type="text" placeholder={placeholder} />
       </form>
+      </div>
       <IconButton disabled={searchTerm.length === 0} id='clear-button' onClick={clearInput} type='button' aria-label='Clear'>
         <img src={clearIcon} alt="Clear" />
       </IconButton>

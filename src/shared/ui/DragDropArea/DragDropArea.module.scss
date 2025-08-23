@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.dropArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px dashed var(--Caption, #69735D);
+  opacity: 0.8;
+  padding: 16px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+  cursor: pointer;
+
+  &:hover,
+  &.dragging {
+    border-color: var(--text-link-button-pressed, #508826);
+    background-color: #ebf4ff;
+  }
+}
+
+.icon {
+  font-size: 48px;
+  color: #4299e1;
+  margin-bottom: 15px;
+}
+
+.text {
+  align-self: stretch;
+  color: var(--Caption, #69735D);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px /* 150% */;
+  letter-spacing: 0.32px;
+  margin: 0;
+}
+
+.hint {
+  color: var(--text-link-button-pressed, #508826);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px /* 150% */;
+  letter-spacing: 0.32px;
+  margin: 0;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.error {
+  color: #e53e3e;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+  background-color: #fed7d7;
+  border-radius: 6px;
+}

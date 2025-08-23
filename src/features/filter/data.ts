@@ -1,4 +1,4 @@
-import type { FilterOption, CheckboxItem } from '../../features/filter';
+import type { FilterOption, CheckboxItem } from '../../widgets/filter';
 
 export const ACTIVITY_OPTIONS: FilterOption[] = [
   { value: 'all', label: 'Всё' },

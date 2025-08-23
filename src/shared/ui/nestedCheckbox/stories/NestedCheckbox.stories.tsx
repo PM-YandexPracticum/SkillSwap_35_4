@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NestedCheckbox } from '../shared/ui/nestedCheckbox';
-import type { NestedCheckboxItem } from '../shared/ui/nestedCheckbox/types';
+import { NestedCheckbox } from '..';
+import type { NestedCheckboxItem } from '../types';
 import { useState } from 'react';
 
 const meta: Meta<typeof NestedCheckbox> = {

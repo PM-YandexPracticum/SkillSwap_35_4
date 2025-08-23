@@ -1,2 +1,2 @@
-export { NestedCheckbox } from './nestedCheckbox';
+export { NestedCheckbox } from './NestedCheckbox';
 export type { NestedCheckboxItem, NestedCheckboxProps } from './types';

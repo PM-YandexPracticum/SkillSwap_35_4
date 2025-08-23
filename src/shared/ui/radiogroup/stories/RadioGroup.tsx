@@ -1,6 +1,6 @@
 import React from 'react';
-import { RadioGroup } from '../shared/ui/radiogroup/radioGroup';
-import type { RadioOption } from '../shared/ui/radiogroup/type';
+import { RadioGroup } from '../radioGroup';
+import type { RadioOption } from '../type';
 import './RadioGroup.css';
 
 interface RadioGroupDemoProps {

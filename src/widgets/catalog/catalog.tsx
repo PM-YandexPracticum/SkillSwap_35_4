@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './catalog.module.scss';
 import data from '../../api/mok.json';
 import type { CardProps } from '../../features/card/types';
@@ -29,6 +30,8 @@ export const Catalog: React.FC<CatalogProps> = ({
   moreBtnType,
   data,
 }) => {
+  const [likedMap, setLikedMap] = React.useState<Record<string, boolean>>({});
+
   function mapToCustomSkills(
     items: { id: number; name: string }[],
   ): CustomSkill[] {
@@ -43,9 +46,12 @@ export const Catalog: React.FC<CatalogProps> = ({
     }));
   }
 
-  function toUserCardArgs(u: cardType[][number]): CardProps {
+  function toUserCardArgs(u: cardType): CardProps {
+    const id = String(u.id);
+    const isActive = !!likedMap[id];
+
     return {
-      id: String(u.id),
+      id,
       login: u.login,
       age: u.age,
       gender: u.gender as 'Мужской' | 'Женский' | 'Не указан',
@@ -57,9 +63,12 @@ export const Catalog: React.FC<CatalogProps> = ({
       description: u.description,
       skillCanTeach: mapToCustomSkills(u.skillCanTeach),
       subcategoriesWantToLearn: mapToCustomSkills(u.subcategoriesWantToLearn),
-      isLiked: false,
+
+      // ✅ контролируем лайк
+      isLiked: isActive,
+      onToggleLike: () => setLikedMap((prev) => ({ ...prev, [id]: !prev[id] })),
+
       hasRequested: false,
-      onToggleLike: () => alert(`toggle like: ${u.id}`),
       onDetailsClick: () => alert(`details: ${u.id}`),
       showLike: true,
       showDetails: true,
@@ -82,6 +91,7 @@ export const Catalog: React.FC<CatalogProps> = ({
             </Button>
           ) : null)}
       </div>
+
       <div className={style.items}>
         {data.map((cardData) => (
           <Card key={cardData.id} {...toUserCardArgs(cardData)} />

@@ -31,13 +31,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div className={style['search-bar']}>
+    <div className={[style['search-bar'], className].filter(Boolean).join(' ')}>
       <form
         className={style['search-form']}
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSearch();
-        }}
+        onSubmit={handleSubmit}
       >
       <IconButton
         className={style['search-button']}
@@ -49,9 +46,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <img src={searchIcon} alt="Search" />
       </IconButton>
         <input
-        className={style['search-input']}
-          id="search-input"
-          onInput={checkInput}
+          ref={inputRef}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           type="text"
           placeholder={placeholder}
           aria-label="Search input"

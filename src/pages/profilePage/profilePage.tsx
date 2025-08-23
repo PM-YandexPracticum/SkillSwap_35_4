@@ -1,6 +1,6 @@
 import { ProfileSection } from '../../features/profileSection';
-import { Footer } from '../footer';
-import { Header } from '../header';
+import { Footer } from '../../widgets/footer';
+import { Header } from '../../widgets/header';
 
 //TODO заменить функции заглушки на реальные
 

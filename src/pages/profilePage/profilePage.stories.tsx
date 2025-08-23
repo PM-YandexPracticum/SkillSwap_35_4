@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Profile } from "./profilePage";
 
 const meta: Meta<typeof Profile> = {
-  title: 'widgets/ProfilePage',
+  title: 'pages/ProfilePage',
   component: Profile,
 };
 

@@ -46,6 +46,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <img src={searchIcon} alt="Search" />
       </IconButton>
         <input
+          className={style['search-input']}
           ref={inputRef}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

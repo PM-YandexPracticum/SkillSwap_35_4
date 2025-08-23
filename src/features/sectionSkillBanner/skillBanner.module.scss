@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.sectionSkillBanner {
+  padding: 32px 52px 40px;
+}
+
+.skillBanner__iconButtons {
+  display: flex;
+  justify-content: right;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.skillBanner__infoSkill {
+  display: flex;
+  gap: 77px;
+  margin-top: 12px;
+}
+
+.skillBanner__infoSkill-title {
+  font: var(--font-h1);
+  letter-spacing: -1.1%;
+  color: var(--font-color-primary);
+  text-align: center;
+}

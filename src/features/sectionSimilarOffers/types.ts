@@ -1,4 +1,4 @@
-import type { CardProps } from '../../features/card/types';
+import type { CardProps } from '../card/types';
 
 export interface BlockSimilarOffersProps {
   cards: CardProps[];

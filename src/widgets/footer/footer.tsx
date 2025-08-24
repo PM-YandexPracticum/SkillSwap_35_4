@@ -1,4 +1,4 @@
-import LogoUI from '../../shared/ui/logoUI/logoUI';
+import LogoUI from '../../shared/ui/LogoUI/logoUI';
 import styles from './index.module.scss';
 
 export const Footer: React.FC = () => {

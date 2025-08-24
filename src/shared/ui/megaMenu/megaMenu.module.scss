@@ -1,5 +1,6 @@
 .mega-menu {
   position: absolute;
+  z-index: 3;
   top: 94px;
   left: 36px;
   display: grid;
@@ -46,4 +47,9 @@
   font: var(--font-body);
   background-color: transparent;
   cursor: pointer;
+}
+
+.menu-section_item:hover {
+  background-color: var(--color-accent-lighten);
+  border-radius: 12px;
 }

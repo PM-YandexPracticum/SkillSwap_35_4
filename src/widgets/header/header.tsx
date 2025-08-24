@@ -9,7 +9,7 @@ import type { HeaderProps } from './types';
 
 import MoonIcon from '../../shared/assets/icons/moon.svg';
 import SunIcon from '../../shared/assets/icons/sun.svg';
-import ArrowIcon from '../../shared/assets/icons/chevron-down.svg';
+import ArrowIcon from '../../shared/assets/icons/chevronDown.svg';
 
 export const Header: React.FC<HeaderProps> = ({
   onLogoClick,

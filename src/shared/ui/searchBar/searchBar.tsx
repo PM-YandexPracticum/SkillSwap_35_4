@@ -32,7 +32,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <div className={[style['search-bar'], className].filter(Boolean).join(' ')}>
+      <form
+        className={style['search-form']}
+        onSubmit={handleSubmit}
+      >
       <IconButton
+        className={style['search-button']}
         id="search-button"
         onClick={handleSearchClick}
         type="button"
@@ -40,9 +45,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       >
         <img src={searchIcon} alt="Search" />
       </IconButton>
-
-      <form onSubmit={handleSubmit}>
         <input
+          className={style['search-input']}
           ref={inputRef}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -50,17 +54,18 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           placeholder={placeholder}
           aria-label="Search input"
         />
+      {searchTerm && (
+        <IconButton
+          className={style['clear-button']}
+          id="clear-button"
+          onClick={clearInput}
+          type="button"
+          aria-label="Clear"
+        >
+          <img src={clearIcon} alt="Clear" />
+        </IconButton>
+      )}
       </form>
-
-      <IconButton
-        disabled={searchTerm.length === 0}
-        id="clear-button"
-        onClick={clearInput}
-        type="button"
-        aria-label="Clear"
-      >
-        <img src={clearIcon} alt="Clear" />
-      </IconButton>
     </div>
   );
 };

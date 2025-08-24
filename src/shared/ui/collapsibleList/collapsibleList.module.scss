@@ -1,61 +1,18 @@
-.collapsibleContainer {
-  position: relative;
-  display: inline-flex;
+@import '../../../styles/variables.scss';
 
-  &.fullWidth {
-    display: flex;
-    width: 100%;
-  }
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
 }
 
 .collapsibleButton {
-  text-align: left;
-  justify-content: space-between;
+  text-align: center;
   width: 100%;
+  color: var(--color-accent);
+  font-size: var(--font-body);
 }
 
-.arrow {
-  transition: transform 0.2s ease;
-  margin-left: 8px;
-  display: inline-block;
-  font-size: 0.7em;
-  vertical-align: middle;
-
-  &Up {
-    transform: rotate(180deg);
-  }
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
-  margin-top: 8px;
-  z-index: 1000;
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.list {
-  list-style: none;
-  padding: 8px 0;
-  margin: 0;
-}
-
-.listItem {
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  color: #333;
-
-  &:hover {
-    background-color: #f5f5f5;
-    color: #000;
-  }
+.icon {
+  width: 24px;
 }

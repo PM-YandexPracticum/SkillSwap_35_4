@@ -25,12 +25,6 @@
   }
 }
 
-.icon {
-  font-size: 48px;
-  color: #4299e1;
-  margin-bottom: 15px;
-}
-
 .text {
   align-self: stretch;
   color: var(--Caption, #69735D);
@@ -45,6 +39,8 @@
 }
 
 .hint {
+  display: flex;
+  gap: 4px;
   color: var(--text-link-button-pressed, #508826);
   font-family: Roboto;
   font-size: 16px;

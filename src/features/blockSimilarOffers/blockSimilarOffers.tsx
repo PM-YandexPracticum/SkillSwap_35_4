@@ -3,8 +3,7 @@ import type { BlockSimilarOffersProps } from './types';
 import { Title } from '../../shared/ui/title/title';
 import { Button } from '../../shared/ui/button';
 import { Card } from '../card/card';
-import chevronRight from '../../shared/assets/icons/chevronRight.svg?url';
-import chevronLeft from '../../shared/assets/icons/chevronLeft.svg?url';
+import scrollArrow from '../../assets/icons/scrollArrow.svg?url';
 import style from './blockSimilarOffers.module.scss';
 
 export const BlockSimilarOffers: React.FC<BlockSimilarOffersProps> = ({
@@ -14,6 +13,7 @@ export const BlockSimilarOffers: React.FC<BlockSimilarOffersProps> = ({
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
 
+  // Функция для проверки видимости стрелок навигации
   const checkScrollPosition = () => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } =
@@ -23,6 +23,7 @@ export const BlockSimilarOffers: React.FC<BlockSimilarOffersProps> = ({
     }
   };
 
+  // Прокрутка контейнера
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const scrollAmount = 400;
@@ -40,32 +41,30 @@ export const BlockSimilarOffers: React.FC<BlockSimilarOffersProps> = ({
   };
 
   return (
-    <section className={style['block-similar-offers']}>
-      <div className={style['block-similar-offers__title']}>
+    <section className="block-similar-offers" style={{ padding: '60px 36px' }}>
+      <div
+        className="block-similar-offers__title"
+        style={{ paddingTop: '32px' }}
+      >
         <Title as="h2" align="left">
-          Похожие предложения
+          Похожие предложения{' '}
         </Title>
       </div>
-
-      <div className={style['block-similar-offers__content']}>
+      <div>
         <Button
-          className={`${style['block-similar-offers__nav-arrow']} ${style['block-similar-offers__nav-arrow--left']} ${!showLeftArrow ? style['block-similar-offers__nav-arrow--hidden'] : ''}`}
+          className={`block-similar-offers__nav-arrow block-similar-offers__nav-arrow--left ${!showLeftArrow ? 'block-similar-offers__nav-arrow--hidden' : ''}`}
           onClick={() => scroll('left')}
         >
-          <img src={chevronLeft} alt="Прокрутить влево" />
+          <img src={scrollArrow} alt="Прокрутить влево" />
         </Button>
-
         <div
           className={style['block-similar-offers__container']}
           ref={scrollContainerRef}
           onScroll={checkScrollPosition}
         >
-          <div className={style['block-similar-offers__wrapper']}>
+          <div className="block-similar-offers__scroll">
             {cards.map((card) => (
-              <div
-                key={card.id}
-                className={style['block-similar-offers__card']}
-              >
+              <div key={card.id} className="block-similar-offers__card-wrapper">
                 <Card
                   {...card}
                   avatarUrl={card.avatarUrl}
@@ -87,12 +86,11 @@ export const BlockSimilarOffers: React.FC<BlockSimilarOffersProps> = ({
             ))}
           </div>
         </div>
-
         <Button
-          className={`${style['block-similar-offers__nav-arrow']} ${style['block-similar-offers__nav-arrow--right']} ${!showRightArrow ? style['block-similar-offers__nav-arrow--hidden'] : ''}`}
+          className={`block-similar-offers__nav-arrow block-similar-offers__nav-arrow--right ${!showRightArrow ? 'block-similar-offers__nav-arrow--hidden' : ''}`}
           onClick={() => scroll('right')}
         >
-          <img src={chevronRight} alt="Прокрутить вправо" />
+          <img src={scrollArrow} alt="Прокрутить вправо" />
         </Button>
       </div>
     </section>

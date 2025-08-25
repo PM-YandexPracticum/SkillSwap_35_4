@@ -1,4 +1,4 @@
-export type TitleVariant = 'h1' | 'h2' | 'h3' | 'h4';
+export type TitleVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'caption';
 export type TitleColor = 'primary' | 'secondary' | 'accent' | 'error';
 
 export interface TitleProps {

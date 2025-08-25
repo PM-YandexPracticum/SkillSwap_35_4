@@ -9,7 +9,9 @@ import type { HeaderProps } from './types';
 
 import MoonIcon from '../../shared/assets/icons/moon.svg';
 import SunIcon from '../../shared/assets/icons/sun.svg';
-import ArrowIcon from '../../shared/assets/icons/chevron-down.svg';
+import ArrowIcon from '../../shared/assets/icons/chevronDown.svg';
+import NotificationIcon from '../../shared/assets/icons/notification.svg';
+import LikeIcon from '../../shared/assets/icons/like-empty.svg';
 
 export const Header: React.FC<HeaderProps> = ({
   onLogoClick,
@@ -19,6 +21,9 @@ export const Header: React.FC<HeaderProps> = ({
   onLogin,
   onRegister,
   darkTheme = true,
+  isLoggedIn = false,
+  username = 'Пользователь',
+  avatarUrl,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -52,22 +57,46 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
       </div>
+
       <div className={styles.search}>
         <SearchBar placeholder="Поиск..." onSearch={onSearch} />
       </div>
-      <div className={styles.themeButton}>
+
+      <div className={styles.icons}>
         <IconButton onClick={onThemeToggle} aria-label="Сменить тему">
           {darkTheme ? <MoonIcon /> : <SunIcon />}
         </IconButton>
+
+        {isLoggedIn && (
+          <>
+            <IconButton aria-label="Уведомления">
+              <NotificationIcon />
+            </IconButton>
+
+            <IconButton aria-label="Избранное">
+              <LikeIcon />
+            </IconButton>
+          </>
+        )}
       </div>
-      <div className={styles.buttons}>
-        <Button variant="secondary" onClick={onLogin}>
-          Войти
-        </Button>
-        <Button variant="primary" onClick={onRegister}>
-          Зарегистрироваться
-        </Button>
-      </div>
+
+      {isLoggedIn ? (
+        <div className={styles.userInfo}>
+          <span className={styles.username}>{username}</span>
+          {avatarUrl && (
+            <img src={avatarUrl} alt="Аватар" className={styles.avatar} />
+          )}
+        </div>
+      ) : (
+        <div className={styles.buttons}>
+          <Button variant="secondary" onClick={onLogin}>
+            Войти
+          </Button>
+          <Button variant="primary" onClick={onRegister}>
+            Зарегистрироваться
+          </Button>
+        </div>
+      )}
     </header>
   );
 };

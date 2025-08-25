@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BusinessFilter } from './Filter';
+import { BusinessFilter } from './filter';
 
 const meta: Meta<typeof BusinessFilter> = {
   title: 'Features/BusinessFilter',

@@ -6,7 +6,7 @@ import type { CustomSkill } from '../../models/skill/model';
 import { Card } from '../../features/card/card';
 import { skillsConfig } from '../../shared/constants/skills/skills.config';
 import { Button } from '../../shared/ui/button/button';
-import chevronRight from '../../shared/assets/icons/chevron-right.svg?url';
+import chevronRight from '../../shared/assets/icons/chevronRight.svg?url';
 import sort from '../../shared/assets/icons/sort.svg?url';
 
 type cardType = (typeof data.users)[number];
@@ -64,7 +64,7 @@ export const Catalog: React.FC<CatalogProps> = ({
       skillCanTeach: mapToCustomSkills(u.skillCanTeach),
       subcategoriesWantToLearn: mapToCustomSkills(u.subcategoriesWantToLearn),
 
-      // ✅ контролируем лайк
+      // контролируем лайк
       isLiked: isActive,
       onToggleLike: () => setLikedMap((prev) => ({ ...prev, [id]: !prev[id] })),
 

@@ -7,4 +7,7 @@ export type HeaderProps = {
   onLogin?: () => void;
   onRegister?: () => void;
   darkTheme?: boolean;
+  isLoggedIn?: boolean;
+  username?: string;
+  avatarUrl?: string;
 };

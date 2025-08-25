@@ -7,12 +7,31 @@
 }
 
 .collapsibleButton {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   width: 100%;
   color: var(--color-accent);
-  font-size: var(--font-body);
+  background-color: transparent;
+  border: none;
+  padding: 8px 12px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.text {
+  flex: 1;
+  text-align: left;
+  font: var(--font-body);
 }
 
 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
+  flex-shrink: 0;
 }

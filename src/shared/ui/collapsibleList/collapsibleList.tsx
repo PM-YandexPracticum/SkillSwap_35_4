@@ -6,18 +6,13 @@ import styles from './CollapsibleList.module.scss';
 export const CollapsibleList = React.forwardRef<
   HTMLButtonElement,
   CollapsibleListProps
->(
-  (
-    { variant = 'primary', size = 'md', className, text, icon, ...props },
-    ref,
-  ) => {
-    return (
-      <div className="container">
-        <button ref={ref} className={clsx(styles.collapsibleButton)} {...props}>
-          {text}
-        </button>
-        <div className="icon">{icon}</div>
-      </div>
-    );
-  },
-);
+>(({ className, text, icon, ...props }, ref) => {
+  return (
+    <div className={clsx(styles.container)}>
+      <button ref={ref} className={clsx(styles.collapsibleButton)} {...props}>
+        <span className={styles.text}>{text}</span>
+        {icon && <div className={styles.icon}>{icon}</div>}
+      </button>
+    </div>
+  );
+});

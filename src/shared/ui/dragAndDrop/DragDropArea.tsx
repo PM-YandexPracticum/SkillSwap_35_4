@@ -3,7 +3,7 @@ import { useDropArea } from './hooks/useDropArea';
 import type { DragDropAreaProps } from './types';
 import styles from './DragDropArea.module.scss';
 import GalleryAddIcon from '../../assets/icons/gallery-add.svg';
-'src/shared/assets/icons/gallery-add.svg';
+('src/shared/assets/icons/gallery-add.svg');
 
 export const DragDropArea: React.FC<DragDropAreaProps> = ({
   onFilesSelect,
@@ -78,8 +78,8 @@ export const DragDropArea: React.FC<DragDropAreaProps> = ({
         <p className={styles.text}>
           Перетащите или выберите изображения навыка
         </p>
-        <p  className={styles.hint}>
-          <GalleryAddIcon/>
+        <p className={styles.hint}>
+          <GalleryAddIcon />
           Выбрать изображения
         </p>
       </div>

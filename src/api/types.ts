@@ -1,25 +1,16 @@
-export interface Subcategory {
-  id: number;
-  name: string;
-}
-
-export interface SkillCategory {
-  id: number;
-  name: string;
-  subcategories: Subcategory[];
-}
-
-export interface Gender {
-  id: number;
-  name: string;
-}
-
-export interface City {
-  id: number;
-  name: string;
-}
-
 export interface User {
+  id: number;
+  email: string;
+  password: string;
+  name: string;
+  birthday: string;
+  gender: string;
+  location: string;
+  skillCanTeach: Subcategory[];
+  subcategoriesWantToLearn: Subcategory[];
+}
+
+export interface mockUser {
   id: number;
   login: string;
   password: string;
@@ -28,40 +19,46 @@ export interface User {
   location: string;
   age: string;
   gender: string;
-  description: string;
   skillCanTeach: Subcategory[];
   subcategoriesWantToLearn: Subcategory[];
 }
 
-export interface LearningType {
-  id: string;
+export interface Subcategory {
+  id: number;
   name: string;
 }
 
-export interface FiltersData {
-  genders: Gender[];
-  skills: SkillCategory[];
-  cities: City[];
-  learningTypes: LearningType[];
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
+export interface RegisterUserData {
+  email: string;
+  password: string;
+  name: string;
+  birthday: string;
+  gender: string;
+  location: string;
+  skillCanTeach: Subcategory[];
+  subcategoriesWantToLearn: Subcategory[];
+}
+
+export interface SwapOffer {
+  targetUserId: number;
+  skillToTeach: Subcategory;
+  skillToLearn: Subcategory;
+  currentUserEmail: string;
 }
 
 export interface ApiResponse<T> {
   success: boolean;
-  data: T;
+  data?: T;
   message?: string;
 }
 
-export interface LoginData {
-  login: string;
-  password: string;
-}
-
-export interface UserFilters {
-  cityIds?: number[];
-  genderIds?: number[];
-  skillIds?: number[];
-  subcategoryIds?: number[];
-  ageRange?: [number, number];
-  searchQuery?: string;
-  learningType?: 'teach' | 'learn' | 'both';
+export interface OfferResponse {
+  targetUserId: number;
+  skillToLearn: Subcategory;
+  skillToTeach: Subcategory;
 }

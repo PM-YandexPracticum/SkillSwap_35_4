@@ -1,35 +1,17 @@
 import {
   getUsersApi,
-  getUserByIdApi,
+  registerUserApi,
   loginApi,
-  getFiltersApi,
-  getUsersByFilterApi,
-  getUsersByLocationApi,
-  searchUsersBySkillsApi,
-  getSkillByIdApi,
-  getUserByLoginApi,
+  offerSwapApi,
+  getOffersByEmailApi,
 } from './mockApi';
 
 export {
   getUsersApi,
-  getUserByIdApi,
+  registerUserApi,
   loginApi,
-  getFiltersApi,
-  getUsersByFilterApi,
-  getUsersByLocationApi,
-  searchUsersBySkillsApi,
-  getSkillByIdApi,
-  getUserByLoginApi,
+  offerSwapApi,
+  getOffersByEmailApi,
 };
 
-export type {
-  User,
-  FiltersData,
-  ApiResponse,
-  LoginData,
-  UserFilters,
-  Subcategory,
-  SkillCategory,
-  Gender,
-  City,
-} from './types';
+export type {} from './types';

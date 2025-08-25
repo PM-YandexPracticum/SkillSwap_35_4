@@ -1,174 +1,161 @@
+import { createMockRequest, checkResponse } from './utils';
 import mockData from './mok.json';
+
 import type {
   User,
-  FiltersData,
   LoginData,
-  UserFilters,
-  Subcategory,
+  RegisterUserData,
+  SwapOffer,
+  ApiResponse,
+  OfferResponse,
+  mockUser,
 } from './types';
-import { createMockRequest, checkResponse, parseAge } from './utils';
 
-// Users API
-export const getUsersApi = (): Promise<User[]> =>
-  createMockRequest(mockData.users as User[], 300).then(checkResponse);
+// Ключи для LocalStorage
+const USERS_STORAGE_KEY = 'swap_users';
+const SWAP_OFFERS_KEY = 'swap_offers';
 
-export const getUserByIdApi = (id: number): Promise<User> =>
-  createMockRequest(mockData.users as User[], 200)
-    .then(checkResponse)
-    .then((users) => {
-      const user = users.find((u) => u.id === id);
-      if (!user) {
-        throw new Error('User not found');
+// Получаем пользователей из LocalStorage
+const getUsersFromStorage = (): User[] => {
+  try {
+    const stored = localStorage.getItem(USERS_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+// Сохраняем пользователей в LocalStorage
+const saveUsersToStorage = (users: User[]) => {
+  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+};
+
+// 1. Получить всех мок пользователей
+export const getUsersApi = (): Promise<mockUser[]> =>
+  createMockRequest([...(mockData.users as mockUser[])], 300).then(
+    checkResponse,
+  );
+
+// 2. Предложить обмен
+export const offerSwapApi = (
+  offer: SwapOffer,
+): Promise<ApiResponse<SwapOffer>> =>
+  createMockRequest({}, 400).then(() => {
+    // Получаем текущие предложения
+    const storedOffers = localStorage.getItem(SWAP_OFFERS_KEY);
+    const offers: SwapOffer[] = storedOffers ? JSON.parse(storedOffers) : [];
+
+    // Добавляем новое предложение
+    offers.push(offer);
+
+    // Сохраняем обратно
+    localStorage.setItem(SWAP_OFFERS_KEY, JSON.stringify(offers));
+
+    return {
+      success: true,
+      data: offer,
+      message: 'Предложение обмена сохранено',
+    };
+  });
+
+// 3. Регистрация пользователя
+export const registerUserApi = (
+  userData: RegisterUserData,
+): Promise<ApiResponse<User>> =>
+  createMockRequest({}, 500)
+    .then(() => {
+      // Валидация обязательных полей
+      const requiredFields: (keyof RegisterUserData)[] = [
+        'email',
+        'password',
+        'name',
+        'birthday',
+        'gender',
+        'location',
+        'skillCanTeach',
+        'subcategoriesWantToLearn',
+      ];
+
+      for (const field of requiredFields) {
+        if (!userData[field]) {
+          throw new Error(`Поле ${field} обязательно для заполнения`);
+        }
       }
-      return user;
-    });
 
-export const loginApi = (credentials: LoginData): Promise<User> =>
-  createMockRequest(mockData.users as User[], 300)
-    .then(checkResponse)
-    .then((users) => {
+      // Проверяем email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(userData.email)) {
+        throw new Error('Некорректный email');
+      }
+
+      const existingUsers = getUsersFromStorage();
+
+      // Проверка уникальности email
+      const emailExists = existingUsers.some((u) => u.email === userData.email);
+      if (emailExists) {
+        throw new Error('Пользователь с таким email уже существует');
+      }
+
+      // Создаем нового пользователя
+      const newUser: User = {
+        id: Date.now(), // Используем время как уникальный ID
+        ...userData,
+      };
+
+      // Добавляем и сохраняем
+      existingUsers.push(newUser);
+      saveUsersToStorage(existingUsers);
+
+      return {
+        success: true,
+        data: newUser,
+        message: 'Пользователь успешно зарегистрирован',
+      };
+    })
+    .catch((error) => ({
+      success: false,
+      message: error.message,
+    }));
+
+// 4. Аутентификация пользователя
+export const loginApi = (credentials: LoginData): Promise<ApiResponse<User>> =>
+  createMockRequest({}, 300)
+    .then(() => {
+      const users = getUsersFromStorage();
       const user = users.find(
         (u) =>
-          u.login === credentials.login && u.password === credentials.password,
+          u.email === credentials.email && u.password === credentials.password,
       );
 
       if (!user) {
-        throw new Error('Invalid credentials');
-      }
-      return user;
-    });
-
-// Filters API
-export const getFiltersApi = (): Promise<FiltersData> =>
-  createMockRequest(mockData.filters as FiltersData, 150).then(checkResponse);
-
-// User filtering with multiple criteria
-export const getUsersByFilterApi = (
-  filters: UserFilters = {},
-): Promise<User[]> =>
-  createMockRequest(mockData.users as User[], 300)
-    .then(checkResponse)
-    .then((users) => {
-      let filteredUsers = [...users];
-
-      // Фильтр по городам
-      if (filters.cityIds && filters.cityIds.length > 0) {
-        const cityNames = mockData.filters.cities
-          .filter((city) => filters.cityIds!.includes(city.id))
-          .map((city) => city.name);
-
-        filteredUsers = filteredUsers.filter((user) =>
-          cityNames.some((cityName) => user.location.includes(cityName)),
-        );
+        throw new Error('Неверный email или пароль');
       }
 
-      // Фильтр по полу
-      if (filters.genderIds && filters.genderIds.length > 0) {
-        const genderNames = mockData.filters.genders
-          .filter((gender) => filters.genderIds!.includes(gender.id))
-          .map((gender) => gender.name);
+      // Возвращаем пользователя без пароля
+      const { password, ...userWithoutPassword } = user;
 
-        filteredUsers = filteredUsers.filter((user) =>
-          genderNames.includes(user.gender),
-        );
-      }
-      // Фильтр по возрасту
-      if (filters.ageRange) {
-        const [minAge, maxAge] = filters.ageRange;
-        filteredUsers = filteredUsers.filter((user) => {
-          const age = parseAge(user.age);
-          return age >= minAge && age <= maxAge;
-        });
-      }
-      // Фильтр по навыкам
-      const hasSkillFilter = filters.skillIds && filters.skillIds.length > 0;
-      const hasSubcategoryFilter =
-        filters.subcategoryIds && filters.subcategoryIds.length > 0;
+      return {
+        success: true,
+        data: userWithoutPassword as User,
+        message: 'Вход выполнен успешно',
+      };
+    })
+    .catch((error) => ({
+      success: false,
+      message: error.message,
+    }));
 
-      if (hasSkillFilter || hasSubcategoryFilter) {
-        const checkSkill = (skill: Subcategory) => {
-          if (hasSkillFilter && filters.skillIds!.includes(skill.id))
-            return true;
-          if (
-            hasSubcategoryFilter &&
-            filters.subcategoryIds!.includes(skill.id)
-          )
-            return true;
-          return false;
-        };
+export const getOffersByEmailApi = (email: string): Promise<OfferResponse[]> =>
+  createMockRequest({}, 100).then(() => {
+    const stored = localStorage.getItem(SWAP_OFFERS_KEY);
+    const allOffers: SwapOffer[] = stored ? JSON.parse(stored) : [];
 
-        switch (filters.learningType) {
-          case 'teach':
-            // Только те, кто МОЖЕТ научить выбранным навыкам
-            filteredUsers = filteredUsers.filter((user) =>
-              user.skillCanTeach.some(checkSkill),
-            );
-            break;
-
-          case 'learn':
-            // Только те, кто ХОЧЕТ научиться выбранным навыкам
-            filteredUsers = filteredUsers.filter((user) =>
-              user.subcategoriesWantToLearn.some(checkSkill),
-            );
-            break;
-
-          default:
-            // both или не указано: те, кто МОЖЕТ научить ИЛИ ХОЧЕТ научиться
-            filteredUsers = filteredUsers.filter(
-              (user) =>
-                user.skillCanTeach.some(checkSkill) ||
-                user.subcategoriesWantToLearn.some(checkSkill),
-            );
-            break;
-        }
-      }
-      return filteredUsers;
-    });
-
-// Search users by location
-export const getUsersByLocationApi = (location: string): Promise<User[]> =>
-  createMockRequest(mockData.users as User[], 300)
-    .then(checkResponse)
-    .then((users) =>
-      users.filter((user) =>
-        user.location.toLowerCase().includes(location.toLowerCase()),
-      ),
-    );
-
-// Search users by skills
-export const searchUsersBySkillsApi = (skillIds: number[]): Promise<User[]> =>
-  createMockRequest(mockData.users as User[], 400)
-    .then(checkResponse)
-    .then((users) =>
-      users.filter(
-        (user) =>
-          user.skillCanTeach.some((skill) => skillIds.includes(skill.id)) ||
-          user.subcategoriesWantToLearn.some((skill) =>
-            skillIds.includes(skill.id),
-          ),
-      ),
-    );
-
-// Get skill by ID
-export const getSkillByIdApi = (skillId: number): Promise<Subcategory> =>
-  createMockRequest(mockData.filters as FiltersData, 200)
-    .then(checkResponse)
-    .then((filters) => {
-      for (const category of filters.skills) {
-        const skill = category.subcategories.find((s) => s.id === skillId);
-        if (skill) return skill;
-      }
-      throw new Error('Skill not found');
-    });
-
-// Get user by login
-export const getUserByLoginApi = (login: string): Promise<User> =>
-  createMockRequest(mockData.users as User[], 250)
-    .then(checkResponse)
-    .then((users) => {
-      const user = users.find((u) => u.login === login);
-      if (!user) {
-        throw new Error('User not found');
-      }
-      return user;
-    });
+    // Фильтруем предложения по email и преобразуем в нужный формат
+    return allOffers
+      .filter((offer) => offer.currentUserEmail === email)
+      .map((offer) => ({
+        targetUserId: offer.targetUserId,
+        skillToLearn: offer.skillToLearn,
+        skillToTeach: offer.skillToTeach,
+      }));
+  });

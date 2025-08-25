@@ -3,16 +3,12 @@ import viteLogo from '/vite.svg';
 import './TestPage.css';
 import {
   getUsersApi,
-  getUserByIdApi,
+  registerUserApi,
   loginApi,
-  getFiltersApi,
-  getUsersByFilterApi,
-  getUsersByLocationApi,
-  searchUsersBySkillsApi,
-  getSkillByIdApi,
-  getUserByLoginApi,
+  offerSwapApi,
+  getOffersByEmailApi,
 } from '../../api';
-import type { UserFilters } from '../../api/types';
+import type { RegisterUserData, LoginData, SwapOffer } from '../../api/types';
 
 export const TestPage = () => {
   const [count, setCount] = useState(0);
@@ -30,69 +26,70 @@ export const TestPage = () => {
 
   const testAllApis = async () => {
     try {
-      // 1. Получение всех пользователей
+      // 1. Регистрация
+      const registerData: RegisterUserData = {
+        email: 'test@example.com',
+        password: 'password123',
+        name: 'Тест Пользователь',
+        birthday: '1990-01-01',
+        gender: 'Мужской',
+        location: 'Москва',
+        skillCanTeach: [{ id: 1011, name: 'Управление командой' }],
+        subcategoriesWantToLearn: [{ id: 1031, name: 'Английский' }],
+      };
+
+      const registerResult = await registerUserApi(registerData);
+      console.log(
+        'Регистрация:',
+        registerResult.success ? 'Успех' : 'Ошибка:',
+        registerResult.message,
+      );
+
+      // 2. Логин
+      const loginData: LoginData = {
+        email: 'test@example.com',
+        password: 'password123',
+      };
+
+      const loginResult = await loginApi(loginData);
+      console.log(
+        'Логин:',
+        loginResult.success ? 'Успех' : 'Ошибка:',
+        loginResult.message,
+      );
+      if (loginResult.success) {
+        console.log('Данные пользователя:', loginResult.data);
+      }
+
+      // 3. Предложить обмен
+      const swapOffer: SwapOffer = {
+        targetUserId: 1,
+        skillToTeach: { id: 1011, name: 'Управление командой' },
+        skillToLearn: { id: 1031, name: 'Английский' },
+        currentUserEmail: 'test@example.com',
+      };
+
+      const offerResult = await offerSwapApi(swapOffer);
+      console.log(
+        'Предложение обмена:',
+        offerResult.success ? 'Успех' : 'Ошибка:',
+        offerResult.message,
+      );
+
+      // 4. Получить всех пользователей(только мок, из файла, не из localStorage)
       const users = await getUsersApi();
       console.log('Все пользователи:', users);
-      // 2. Получение пользователя по ID
-      const userById = await getUserByIdApi(1);
-      console.log('Пользователь с ID 1:', userById);
-      // 3. Тест логина (успешный)
-      const loggedInUser = await loginApi({
-        login: 'user1',
-        password: 'password1',
-      });
-      console.log('Успешный вход:', loggedInUser.name);
-      // 4. Тест логина (неуспешный)
-      try {
-        await loginApi({ login: 'user1', password: 'wrongpassword' });
-      } catch (error) {
-        console.log('Ожидаемая ошибка входа:', getErrorMessage(error));
-      }
-      // 5. Получение фильтров
-      const filters = await getFiltersApi();
-      console.log('Фильтры:', filters);
-      // 6. Фильтрация пользователей
-      const filterParams: UserFilters = {
-        cityIds: [201, 202], // Москва и СПб
-        genderIds: [1], // Мужской
-        skillIds: [1011], // Управление командой
-        ageRange: [25, 40] as [number, number],
-      };
-      const filteredUsers = await getUsersByFilterApi(filterParams);
-      console.log('Отфильтрованные пользователи:', filteredUsers);
-      // 7. Поиск по локации
-      const usersInMoscow = await getUsersByLocationApi('Москва');
-      console.log('Пользователи в Москве:', usersInMoscow);
-      // 8. Поиск по навыкам
-      const englishTeachers = await searchUsersBySkillsApi([1031]);
-      console.log('Преподаватели английского:', englishTeachers);
-      // 9. Получение навыка по ID
-      const skill = await getSkillByIdApi(1011);
-      console.log('Навык 1011 Управление командой:', skill);
-      // 10. Получение пользователя по логину
-      const userByLogin = await getUserByLoginApi('user2');
-      console.log('Пользователь user2:', userByLogin);
-      // 12. Тест несуществующего пользователя
-      try {
-        await getUserByIdApi(999);
-      } catch (error) {
-        console.log(
-          'Ожидаемая ошибка (пользователь не найден):',
-          getErrorMessage(error),
-        );
-      }
-      // 13. Тест несуществующего навыка
-      try {
-        await getSkillByIdApi(9999);
-      } catch (error) {
-        console.log(
-          'Ожидаемая ошибка (навык не найден):',
-          getErrorMessage(error),
-        );
-      }
+
+      // 5. Показать предложения привязанные к текущему email
+      const offers = await getOffersByEmailApi('test@example.com');
+      console.log('Предложения обмена:', offers);
     } catch (error) {
       console.error('Ошибка при тестировании API:', getErrorMessage(error));
     }
+  };
+
+  const handleTestClick = () => {
+    testAllApis();
   };
 
   return (
@@ -108,6 +105,14 @@ export const TestPage = () => {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+
+        <button onClick={handleTestClick} style={{ marginTop: '20px' }}>
+          Запустить тесты API
+        </button>
+
+        <p style={{ marginTop: '20px' }}>
+          Откройте консоль (F12) для просмотра результатов тестов
+        </p>
       </div>
     </>
   );

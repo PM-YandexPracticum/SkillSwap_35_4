@@ -501,20 +501,6 @@
     }
   ],
   "filters": {
-    "learningTypes": [
-      {
-        "id": "both",
-        "name": "Все"
-      },
-      {
-        "id": "teach",
-        "name": "Могу научить"
-      },
-      {
-        "id": "learn",
-        "name": "Хочу научиться"
-      }
-    ],
     "genders": [
       {
         "id": 0,

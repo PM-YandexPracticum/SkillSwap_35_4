@@ -1,15 +1,10 @@
 import React from 'react';
 import type { CardProps } from './types';
-import { Skill } from '../../shared/ui/skill/skill';
 import { Button } from '../../shared/ui/button/index';
 import { LikeButton } from '../../shared/ui/likeButton/likeButton';
 import styles from './card.module.scss';
-import {
-  getSkillType,
-  getSkillKey,
-  getSkillName,
-} from '../../shared/utils/skillTypeHelper';
 import { Title } from '../../shared/ui/title/title';
+import { SkillList } from '../../shared/ui/skill/skillList';
 
 // заглушка для обмена
 const useExchange = () => ({
@@ -36,9 +31,6 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const { hasSentRequest } = useExchange();
   const alreadyRequested = hasRequested || hasSentRequest(id);
-
-  const learnSkill = subcategoriesWantToLearn.slice(0, 2);
-  const moreSkills = subcategoriesWantToLearn.length - learnSkill.length;
 
   return (
     <div className={styles['card-container']}>
@@ -77,34 +69,12 @@ export const Card: React.FC<CardProps> = ({
 
         <div className={styles['card-teach']}>
           <p className={styles['card-point']}>Может научить:</p>
-          <div className={styles['card-skills']}>
-            {skillCanTeach.map((skill) => (
-              <Skill
-                type={getSkillType(getSkillName(skill))}
-                key={getSkillKey(skill)}
-              >
-                {getSkillName(skill)}
-              </Skill>
-            ))}
-          </div>
+          <SkillList skills={skillCanTeach} />
         </div>
 
         <div className={styles['card-teach']}>
           <p className={styles['card-point']}>Хочет научиться:</p>
-          <div className={styles['card-skills']}>
-            {learnSkill.map((skill) => (
-              <Skill
-                type={getSkillType(getSkillName(skill))}
-                key={getSkillKey(skill)}
-              >
-                {getSkillName(skill)}
-              </Skill>
-            ))}
-
-            {subcategoriesWantToLearn.length > 2 && (
-              <Skill type={'Остальные категории'}>{`+ ${moreSkills}`}</Skill>
-            )}
-          </div>
+          <SkillList skills={subcategoriesWantToLearn} />
         </div>
       </div>
 

@@ -47,3 +47,15 @@
 .labelVariant.extra {
   background-color: var(--color-skill-extra);
 }
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.plus {
+  display: inline;
+  white-space: nowrap;
+}

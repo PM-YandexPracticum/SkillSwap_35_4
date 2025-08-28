@@ -8,6 +8,8 @@ export interface User {
   location: string;
   skillCanTeach: Subcategory[];
   subcategoriesWantToLearn: Subcategory[];
+  isAuth: boolean;
+  accessToken: string;
 }
 
 export interface mockUser {

@@ -30,25 +30,52 @@ const saveUsersToStorage = (users: User[]) => {
   localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
 };
 
-// 1. Получить всех мок пользователей
+// Получить всех мок пользователей из json
 export const getUsersApi = (): Promise<mockUser[]> =>
   createMockRequest([...(mockData.users as mockUser[])], 300).then(
     checkResponse,
   );
 
-// 2. Предложить обмен
+// Предложить обмен наыками
 export const offerSwapApi = (
   offer: SwapOffer,
 ): Promise<ApiResponse<SwapOffer>> =>
   createMockRequest({}, 400).then(() => {
-    // Получаем текущие предложения
     const storedOffers = localStorage.getItem(SWAP_OFFERS_KEY);
     const offers: SwapOffer[] = storedOffers ? JSON.parse(storedOffers) : [];
 
-    // Добавляем новое предложение
-    offers.push(offer);
+    // Ищем существующее предложение от этого пользователя к этому targetUserId
+    const existingOfferIndex = offers.findIndex(
+      (o) =>
+        o.currentUserEmail === offer.currentUserEmail &&
+        o.targetUserId === offer.targetUserId,
+    );
 
-    // Сохраняем обратно
+    if (existingOfferIndex !== -1) {
+      const existingOffer = offers[existingOfferIndex];
+
+      // Проверяем, отличается ли новое предложение
+      const isSameOffer =
+        existingOffer.skillToTeach.id === offer.skillToTeach.id &&
+        existingOffer.skillToLearn.id === offer.skillToLearn.id;
+
+      if (isSameOffer) {
+        return {
+          success: false,
+          message: 'Такое предложение уже имеется',
+        };
+      } else {
+        offers[existingOfferIndex] = offer;
+        localStorage.setItem(SWAP_OFFERS_KEY, JSON.stringify(offers));
+
+        return {
+          success: true,
+          data: offer,
+          message: 'Предложение обмена обновлено',
+        };
+      }
+    }
+    offers.push(offer);
     localStorage.setItem(SWAP_OFFERS_KEY, JSON.stringify(offers));
 
     return {
@@ -58,13 +85,11 @@ export const offerSwapApi = (
     };
   });
 
-// 3. Регистрация пользователя
 export const registerUserApi = (
   userData: RegisterUserData,
 ): Promise<ApiResponse<User>> =>
   createMockRequest({}, 500)
     .then(() => {
-      // Валидация обязательных полей
       const requiredFields: (keyof RegisterUserData)[] = [
         'email',
         'password',
@@ -96,19 +121,24 @@ export const registerUserApi = (
         throw new Error('Пользователь с таким email уже существует');
       }
 
-      // Создаем нового пользователя
+      // Создаем нового пользователя с isAuth и accessToken
       const newUser: User = {
-        id: Date.now(), // Используем время как уникальный ID
+        id: Date.now(),
         ...userData,
+        isAuth: true,
+        accessToken: 'token123',
       };
 
       // Добавляем и сохраняем
       existingUsers.push(newUser);
       saveUsersToStorage(existingUsers);
 
+      // Возвращаем пользователя без пароля, но с isAuth и accessToken
+      const { password, ...userWithoutPassword } = newUser;
+
       return {
         success: true,
-        data: newUser,
+        data: userWithoutPassword as User,
         message: 'Пользователь успешно зарегистрирован',
       };
     })
@@ -117,7 +147,7 @@ export const registerUserApi = (
       message: error.message,
     }));
 
-// 4. Аутентификация пользователя
+// Аутентификация пользователя
 export const loginApi = (credentials: LoginData): Promise<ApiResponse<User>> =>
   createMockRequest({}, 300)
     .then(() => {
@@ -131,13 +161,119 @@ export const loginApi = (credentials: LoginData): Promise<ApiResponse<User>> =>
         throw new Error('Неверный email или пароль');
       }
 
-      // Возвращаем пользователя без пароля
+      // Обновляем статус аутентификации и токен
+      user.isAuth = true;
+      user.accessToken = 'token123';
+
+      // Сохраняем обновленного пользователя
+      const userIndex = users.findIndex((u) => u.id === user.id);
+      if (userIndex !== -1) {
+        users[userIndex] = user;
+        saveUsersToStorage(users);
+      }
+
+      // Возвращаем пользователя без пароля, но с isAuth и accessToken
       const { password, ...userWithoutPassword } = user;
 
       return {
         success: true,
         data: userWithoutPassword as User,
         message: 'Вход выполнен успешно',
+      };
+    })
+    .catch((error) => ({
+      success: false,
+      message: error.message,
+    }));
+
+// Выход из системы
+export const logoutApi = (
+  email: string,
+  accessToken: string,
+): Promise<ApiResponse<void>> =>
+  createMockRequest({}, 200)
+    .then(() => {
+      const users = getUsersFromStorage();
+      const user = users.find((u) => u.email === email);
+
+      // Проверяем существование пользователя
+      if (!user) {
+        throw new Error('Пользователь с таким email не найден');
+      }
+
+      // Проверяем авторизацию
+      if (!user.isAuth) {
+        throw new Error('Пользователь не авторизован');
+      }
+
+      // Проверяем токен
+      if (user.accessToken !== accessToken) {
+        throw new Error('Неверный токен');
+      }
+
+      // Меняем статус аутентификации
+      user.isAuth = false;
+
+      // Сохраняем изменения
+      const userIndex = users.findIndex((u) => u.id === user.id);
+      if (userIndex !== -1) {
+        users[userIndex] = user;
+        saveUsersToStorage(users);
+      }
+
+      return {
+        success: true,
+        message: 'Выход выполнен успешно',
+      };
+    })
+    .catch((error) => ({
+      success: false,
+      message: error.message,
+    }));
+
+// Обновление данных пользователя
+export const updateUserApi = (
+  email: string,
+  accessToken: string,
+  updates: Partial<Omit<User, 'id' | 'isAuth' | 'accessToken'>>,
+): Promise<ApiResponse<User>> =>
+  createMockRequest({}, 400)
+    .then(() => {
+      const users = getUsersFromStorage();
+      const user = users.find((u) => u.email === email);
+
+      // Проверяем существование пользователя
+      if (!user) {
+        throw new Error('Пользователь с таким email не найден');
+      }
+
+      // Проверяем авторизацию
+      if (!user.isAuth) {
+        throw new Error('Пользователь не авторизован');
+      }
+
+      // Проверяем токен
+      if (user.accessToken !== accessToken) {
+        throw new Error('Неверный токен');
+      }
+
+      // Применяем обновления
+      Object.assign(user, updates);
+
+      // Сохраняем изменения
+      const userIndex = users.findIndex((u) => u.id === user.id);
+      if (userIndex !== -1) {
+        users[userIndex] = user;
+        saveUsersToStorage(users);
+      }
+
+      // Возвращаем пользователя без пароля
+      const { password, ...userWithoutPassword } = user;
+
+      return {
+        success: true,
+        data: userWithoutPassword as User,
+        message: 'Данные пользователя обновлены',
       };
     })
     .catch((error) => ({

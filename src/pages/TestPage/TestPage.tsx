@@ -7,6 +7,8 @@ import {
   loginApi,
   offerSwapApi,
   getOffersByEmailApi,
+  logoutApi,
+  updateUserApi,
 } from '../../api';
 import type { RegisterUserData, LoginData, SwapOffer } from '../../api/types';
 
@@ -39,11 +41,7 @@ export const TestPage = () => {
       };
 
       const registerResult = await registerUserApi(registerData);
-      console.log(
-        'Регистрация:',
-        registerResult.success ? 'Успех' : 'Ошибка:',
-        registerResult.message,
-      );
+      console.log('Регистрация:', registerResult);
 
       // 2. Логин
       const loginData: LoginData = {
@@ -52,14 +50,7 @@ export const TestPage = () => {
       };
 
       const loginResult = await loginApi(loginData);
-      console.log(
-        'Логин:',
-        loginResult.success ? 'Успех' : 'Ошибка:',
-        loginResult.message,
-      );
-      if (loginResult.success) {
-        console.log('Данные пользователя:', loginResult.data);
-      }
+      console.log('Логин:', loginResult);
 
       // 3. Предложить обмен
       const swapOffer: SwapOffer = {
@@ -76,13 +67,41 @@ export const TestPage = () => {
         offerResult.message,
       );
 
-      // 4. Получить всех пользователей(только мок, из файла, не из localStorage)
+      // 4. Получить всех пользователей (моки)
       const users = await getUsersApi();
-      console.log('Все пользователи:', users);
+      console.log('Моковые пользователи:', users);
 
-      // 5. Показать предложения привязанные к текущему email
+      // 5. Показать предложения
       const offers = await getOffersByEmailApi('test@example.com');
       console.log('Предложения обмена:', offers);
+
+      // 6. Обновление пользователя
+      if (loginResult.success && loginResult.data) {
+        const updateResult = await updateUserApi(
+          'test@example.com',
+          loginResult.data.accessToken,
+          { name: 'Обновленное Имя2' },
+        );
+        console.log(
+          'Обновление:',
+          updateResult.success ? 'Успех' : 'Ошибка:',
+          updateResult.message,
+          updateResult.data,
+        );
+      }
+
+      // 7. Выход
+      if (loginResult.success && loginResult.data) {
+        const logoutResult = await logoutApi(
+          'test@example.com',
+          loginResult.data.accessToken,
+        );
+        console.log(
+          'Выход:',
+          logoutResult.success ? 'Успех' : 'Ошибка:',
+          logoutResult.message,
+        );
+      }
     } catch (error) {
       console.error('Ошибка при тестировании API:', getErrorMessage(error));
     }

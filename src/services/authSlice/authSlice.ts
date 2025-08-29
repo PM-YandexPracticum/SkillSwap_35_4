@@ -159,6 +159,20 @@ export const authSlice = createSlice({
       state.user = action.payload ?? null;
       state.error = null;
       state.isInit = true;
+      if (action.payload) {
+        try {
+          const storedUsers = localStorage.getItem('swap_users');
+          const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
+          const userIndex = users.findIndex((u) => u.id === action.payload!.id);
+
+          if (userIndex !== -1) {
+            users[userIndex] = { ...users[userIndex], isAuth: true };
+            localStorage.setItem('swap_users', JSON.stringify(users));
+          }
+        } catch (error) {
+          console.error('Error updating user in localStorage:', error);
+        }
+      }
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
@@ -176,6 +190,19 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.user = null;
       state.error = null;
+      try {
+        const storedUsers = localStorage.getItem('swap_users');
+        if (storedUsers) {
+          const users: User[] = JSON.parse(storedUsers);
+          const updatedUsers = users.map((user) => ({
+            ...user,
+            isAuth: false,
+          }));
+          localStorage.setItem('swap_users', JSON.stringify(updatedUsers));
+        }
+      } catch (error) {
+        console.error('Error updating localStorage on logout:', error);
+      }
     });
     builder.addCase(logoutUser.rejected, (state, action) => {
       state.isLoading = false;

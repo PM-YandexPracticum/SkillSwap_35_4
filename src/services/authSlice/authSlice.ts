@@ -49,8 +49,8 @@ export const loginUser = createAsyncThunk(
   async (loginData: LoginData, { rejectWithValue }) => {
     try {
       const response = await loginApi(loginData);
-      // setCookie('accessToken', response.accessToken);
-      // localStorage.setItem('refreshToken', response.refreshToken);
+      setCookie('accessToken', response.accessToken);
+      localStorage.setItem('refreshToken', response.refreshToken);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -60,79 +60,81 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-// //получение данных
-// export const getUser = createAsyncThunk(
-//   'auth/user',
-//   async (_, { rejectWithValue, dispatch }) => {
-//     try {
-//       const response = await getCurrentUserApi();
-//       if (!response.success) {
-//         throw new Error(response.message);
-//       }
-//       return response.data;
-//     } catch (error) {
-//       if ((error as Error).message.includes('не найден') ||
-//           (error as Error).message.includes('Ошибка')) {
-//         try {
-//           const refreshData = await refreshToken();
-//           if (!refreshData.success) {
-//             throw new Error(refreshData.message);
-//           }
-//           setCookie('accessToken', refreshData.accessToken);
-//           localStorage.setItem('refreshToken', refreshData.refreshToken);
+//получение данных
+export const getUser = createAsyncThunk(
+  'auth/user',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await getCurrentUserApi();
+      if (!response.success) {
+        throw new Error(response.message);
+      }
+      return response.data;
+    } catch (error) {
+      if (
+        (error as Error).message.includes('не найден') ||
+        (error as Error).message.includes('Ошибка')
+      ) {
+        try {
+          const refreshData = await refreshToken();
+          if (!refreshData.success) {
+            throw new Error(refreshData.message);
+          }
+          setCookie('accessToken', refreshData.accessToken);
+          localStorage.setItem('refreshToken', refreshData.refreshToken);
 
-//           // Повторный запрос пользователя
-//           const newResponse = await getCurrentUserApi();
-//           if (!newResponse.success) {
-//             throw new Error(newResponse.message);
-//           }
-//           return newResponse.data;
-//         } catch (refreshError) {
-//           dispatch(logout());
-//           return rejectWithValue('Сессия истекла. Войдите снова');
-//         }
-//       }
-//       return rejectWithValue(
-//         error instanceof Error ? error.message : 'Ошибка получения данных'
-//       );
-//     }
-//   }
-// );
+          // Повторный запрос пользователя
+          const newResponse = await getCurrentUserApi();
+          if (!newResponse.success) {
+            throw new Error(newResponse.message);
+          }
+          return newResponse.data;
+        } catch (refreshError) {
+          dispatch(logout());
+          return rejectWithValue('Сессия истекла. Войдите снова');
+        }
+      }
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Ошибка получения данных',
+      );
+    }
+  },
+);
 
-// //обновление данных
-// export const updateUser = createAsyncThunk(
-//   'auth/update',
-//   async (
-//     userData: { name: string; email: string; password?: string },
-//     { rejectWithValue }
-//   ) => {
-//     try {
-//       const response = await updateUserApi(userData);
-//       return response.user;
-//     } catch (error) {
-//       return rejectWithValue(
-//         error instanceof Error ? error.message : 'Ошибка обновления данных'
-//       );
-//     }
-//   }
-// );
+//обновление данных
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async (
+    userData: { name: string; email: string; password?: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await updateUserApi(userData);
+      return response.user;
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Ошибка обновления данных',
+      );
+    }
+  },
+);
 
-// //выход
-// export const logoutUser = createAsyncThunk(
-//   'auth/logout',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       await logoutApi();
-//       localStorage.removeItem('refreshToken');
-//       document.cookie = 'accessToken=; Max-Age=0; path=/;';
-//       return null;
-//     } catch (error) {
-//       return rejectWithValue(
-//         error instanceof Error ? error.message : 'Ошибка выхода'
-//       );
-//     }
-//   }
-// );
+//выход
+export const logoutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await logoutApi();
+      localStorage.removeItem('refreshToken');
+      document.cookie = 'accessToken=; Max-Age=0; path=/;';
+      return null;
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Ошибка выхода',
+      );
+    }
+  },
+);
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -157,98 +159,98 @@ export const authSlice = createSlice({
       state.error = null;
     },
   },
-  // extraReducers: (builder) => {
-  //   // получение данных
-  //   builder.addCase(getUser.pending, (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(getUser.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isInit = true;
-  //     state.isLoggedIn = false;
-  //     state.error = action.payload as string;
-  //   });
-  //   builder.addCase(getUser.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isInit = true;
-  //     state.isLoggedIn = true;
-  //     state.user = action.payload;
-  //   });
+  extraReducers: (builder) => {
+    // получение данных
+    builder.addCase(getUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(getUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isInit = true;
+      state.isLoggedIn = false;
+      state.error = action.payload as string;
+    });
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isInit = true;
+      state.isLoggedIn = true;
+      state.user = action.payload;
+    });
 
-  //   // вход
-  //   builder.addCase(loginUser.pending, (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(loginUser.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = true;
-  //     if (action.payload) {
-  //       state.user = action.payload;
-  //     } else {
-  //       state.user = null;
-  //     }
-  //     state.error = null;
-  //   });
-  //   builder.addCase(loginUser.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = false;
-  //     state.error = action.payload as string;
-  //   });
+    // вход
+    builder.addCase(loginUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      if (action.payload) {
+        state.user = action.payload;
+      } else {
+        state.user = null;
+      }
+      state.error = null;
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = action.payload as string;
+    });
 
-  //   // выход
-  //   builder.addCase(logoutUser.pending, (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(logoutUser.fulfilled, (state) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = false;
-  //     state.user = null;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(logoutUser.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.error = action.payload as string;
-  //   });
+    // выход
+    builder.addCase(logoutUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.user = null;
+      state.error = null;
+    });
+    builder.addCase(logoutUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
+    });
 
-  //   // регистрация
-  //   builder.addCase(registerUser.pending, (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(registerUser.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = true;
-  //     if (action.payload) {
-  //       state.user = action.payload;
-  //     } else {
-  //       state.user = null;
-  //     }
-  //     state.error = null;
-  //     state.isInit = true;
-  //   });
-  //   builder.addCase(registerUser.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = false;
-  //     state.error = action.payload as string;
-  //   });
+    // регистрация
+    builder.addCase(registerUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      if (action.payload) {
+        state.user = action.payload;
+      } else {
+        state.user = null;
+      }
+      state.error = null;
+      state.isInit = true;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = action.payload as string;
+    });
 
-  //   // обновление пользователя
-  //   builder.addCase(updateUser.pending, (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   });
-  //   builder.addCase(updateUser.rejected, (state, action) => {
-  //     state.isLoading = false;
-  //     state.error = action.payload as string;
-  //   });
-  //   builder.addCase(updateUser.fulfilled, (state, action) => {
-  //     state.isLoading = false;
-  //     state.user = action.payload;
-  //   });
-  // }
+    // обновление пользователя
+    builder.addCase(updateUser.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload;
+    });
+  },
 });
 
 export const { init, logout, clearError } = authSlice.actions;

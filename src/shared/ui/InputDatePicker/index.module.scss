@@ -1,0 +1,97 @@
+.input__date {
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border: 1px solid #69735D;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  cursor: pointer;
+}
+
+.input {
+  width: 132px;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.calendar {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #69735D;
+  border-radius: 12px;
+  z-index: 100;
+  user-select: none;
+  padding: 32px 16px;
+}
+
+.daysOfWeek {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+  color: #508826;
+  font-weight: 400;
+  text-align: center;
+  font-size: 12px;
+}
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+  width: 280px;
+}
+.btn__revoke {
+  width: 125px;
+  height: 48px;
+  background-color: #fff;
+  border: 1px solid #ABD27A;
+}
+
+.btn__choose {
+  width: 125px;
+  height: 48px;
+}
+
+.nums {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.input__month {
+  border: 0;
+  width: 90px;
+  height: 25px;
+}
+
+.input__year {
+  border: 0;
+  width: 70px;
+  height: 25px;
+}
+
+.options {
+  width: 120px;
+}
+
+.options_year {
+  width: 100px;
+}
+
+.select__picker {
+  width: 120px;
+  margin-bottom: 20px;
+}

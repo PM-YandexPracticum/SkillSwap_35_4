@@ -23,6 +23,10 @@
   padding: 12px 20px;
   height: 100%;
   border: none;
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
   &::placeholder {
     color: var(--color-tertiary);
   }

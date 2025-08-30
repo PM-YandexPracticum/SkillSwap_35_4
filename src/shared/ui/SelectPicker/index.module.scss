@@ -1,0 +1,42 @@
+.select__picker {
+    position: relative;
+    width: 208px;
+    user-select: none;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #69735D;
+    font-weight: 400;
+}
+
+.input {
+    height: 48px;
+    background-color: #fff;
+    border: 1px solid #69735D;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.options__container {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #69735D;
+    width: 100%;
+    border-radius: 12px;
+    max-height: 150px;
+    overflow: auto;
+    z-index: 100;
+    border-top: none;
+    margin-top: 0px; 
+
+    .option:hover {
+        background-color: #ABD27A;
+    }
+}
+

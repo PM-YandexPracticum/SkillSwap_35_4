@@ -69,12 +69,12 @@ export const Card: React.FC<CardProps> = ({
 
         <div className={styles['card-teach']}>
           <p className={styles['card-point']}>Может научить:</p>
-          <SkillList skills={skillCanTeach} />
+          <SkillList key={`${id}-teach`} skills={skillCanTeach} />
         </div>
 
         <div className={styles['card-teach']}>
           <p className={styles['card-point']}>Хочет научиться:</p>
-          <SkillList skills={subcategoriesWantToLearn} />
+          <SkillList key={`${id}-learn`} skills={subcategoriesWantToLearn} />
         </div>
       </div>
 

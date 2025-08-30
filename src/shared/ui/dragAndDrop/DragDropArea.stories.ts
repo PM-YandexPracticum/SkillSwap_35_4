@@ -4,7 +4,7 @@ import { DragDropArea } from './DragDropArea';
 const mockOnFilesSelect = () => {};
 
 const meta = {
-  title: 'Shared/UI/DragDropArea',
+  title: 'Shared/DragDropArea',
   component: DragDropArea,
   parameters: {
     layout: 'centered',

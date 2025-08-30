@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroupDemo } from './RadioGroup';
 
 const meta: Meta<typeof RadioGroupDemo> = {
-  title: 'UI/RadioGroup',
+  title: 'Shared/Radio/RadioGroup',
   component: RadioGroupDemo,
   parameters: {
     layout: 'centered',

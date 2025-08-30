@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CollapsibleList } from './collapsibleList';
 
 const meta: Meta<typeof CollapsibleList> = {
-  title: 'Components/CollapsibleList',
+  title: 'Shared/CollapsibleList',
   component: CollapsibleList,
   parameters: {
     layout: 'centered',

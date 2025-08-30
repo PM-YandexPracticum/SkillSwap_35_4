@@ -4,7 +4,7 @@ import type { CardProps } from '../card/types';
 import type { UserSkill } from '../../models/user/model';
 
 const meta: Meta<typeof BlockSimilarOffers> = {
-  title: 'Components/BlockSimilarOffers',
+  title: 'Features/BlockSimilarOffers',
   component: BlockSimilarOffers,
   parameters: {
     layout: 'fullscreen',

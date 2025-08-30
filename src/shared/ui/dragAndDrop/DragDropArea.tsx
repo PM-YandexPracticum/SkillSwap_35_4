@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useDropArea } from './hooks/useDropArea';
+import { useDropArea } from '../hooks/useDropArea';
 import type { DragDropAreaProps } from './types';
 import styles from './DragDropArea.module.scss';
 import GalleryAddIcon from '../../assets/icons/gallery-add.svg';

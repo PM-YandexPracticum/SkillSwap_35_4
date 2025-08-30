@@ -1,5 +1,4 @@
-
-import { Button } from '../../shared/ui/button/Button';
+import { Button } from '../../shared/ui/button/button';
 import {
   Input,
   InputDate,
@@ -12,7 +11,9 @@ import edit from '../../shared/assets/icons/edit.svg?url';
 import React from 'react';
 import type { UserProfile } from './type';
 
-export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => {
+export const ProfileSection: React.FC<UserProfile> = (
+  userData: UserProfile,
+) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const submit = (values: Record<string, any>) => {
     console.log('Submitted values:', values);
@@ -86,7 +87,7 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
         >
           <div className={styles.credentials}>
             <InputEmail
-              id='email'
+              id="email"
               placeholder="email"
               label="Почта"
               defaultValue={userData.email}
@@ -97,7 +98,7 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
             </a>
           </div>
           <InputName
-            id='name'
+            id="name"
             placeholder="Имя"
             label="Имя"
             defaultValue={userData.name}
@@ -105,7 +106,7 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
           />
           <div className={styles['input-Group']}>
             <InputDate
-              id='birthday'
+              id="birthday"
               placeholder="Дата рождения"
               label="Дата рождения"
               type="date"
@@ -117,7 +118,7 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
               icon={<img src={edit} />}
             />
             <Input
-              id='gender'
+              id="gender"
               placeholder="Пол"
               label="Пол"
               type="text"
@@ -126,7 +127,7 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
             />
           </div>
           <Input
-            id='location'
+            id="location"
             placeholder="Город"
             label="Город"
             type="text"
@@ -134,19 +135,27 @@ export const ProfileSection: React.FC<UserProfile> = (userData: UserProfile) => 
             icon={<img src={edit} />}
           />
           <Input
-            id='about'
+            id="about"
             placeholder="О себе"
             label="О себе"
             type="textarea"
             defaultValue={userData.description}
             icon={<img src={edit} />}
           />
-          <Button type="submit" form="profileForm" className={styles['save-Button']}>
-          Сохранить
-        </Button>
+          <Button
+            type="submit"
+            form="profileForm"
+            className={styles['save-Button']}
+          >
+            Сохранить
+          </Button>
         </form>
         <button className={styles['avatar-Button']}>
-          <img src={userData.avatarUrl} alt="Аватар" className={styles.avatar} />
+          <img
+            src={userData.avatarUrl}
+            alt="Аватар"
+            className={styles.avatar}
+          />
           <img
             src={editPhoto}
             alt="Редактировать фото"

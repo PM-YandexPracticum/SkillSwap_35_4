@@ -3,7 +3,7 @@ import { LikeButton } from './likeButton';
 import React from 'react';
 
 const meta: Meta<typeof LikeButton> = {
-  title: 'Shared/LikeButton',
+  title: 'Shared/Buttons/LikeButton',
   component: LikeButton,
   args: {
     active: false,

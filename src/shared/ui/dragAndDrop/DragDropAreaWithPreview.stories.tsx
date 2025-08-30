@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { DragDropArea } from './dragAndDrop/DragDropArea';
+import { DragDropArea } from './DragDropArea';
 import type { FileWithPreview } from './types';
 
 const mockFn = () => {};

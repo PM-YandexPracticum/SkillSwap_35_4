@@ -4,7 +4,7 @@ import type { NestedCheckboxItem } from '../types';
 import { useState } from 'react';
 
 const meta: Meta<typeof NestedCheckbox> = {
-  title: 'UI/NestedCheckbox',
+  title: 'Shared/Checkboxes/NestedCheckbox',
   component: NestedCheckbox,
   parameters: {
     layout: 'centered',

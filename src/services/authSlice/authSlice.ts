@@ -244,11 +244,4 @@ export const authSlice = createSlice({
 });
 
 export const { init, logout, clearError } = authSlice.actions;
-export const userReducer = authSlice.reducer;
-
-// Селекторы
-// export const selectInit = (state: RootState) => state.user.isInit;
-// export const selectUser = (state: RootState) => state.user.user;
-// export const selectIsLoggedIn = (state: RootState) => state.user.isLoggedIn;
-// export const selectIsLoading = (state: RootState) => state.user.isLoading;
-// export const selectError = (state: RootState) => state.user.error;
+export const authReducer = authSlice.reducer;

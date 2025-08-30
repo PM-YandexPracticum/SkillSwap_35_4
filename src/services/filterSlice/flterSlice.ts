@@ -213,4 +213,4 @@ export const {
   applyFilters,
 } = usersFilterSlice.actions;
 
-export default usersFilterSlice.reducer;
+export const filterReducer = usersFilterSlice.reducer;

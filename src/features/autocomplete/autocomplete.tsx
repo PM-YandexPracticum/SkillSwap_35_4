@@ -14,7 +14,7 @@ import type {
 import clsx from 'clsx';
 import styles from './Autocomplete.module.scss';
 import { Input } from '../../shared/ui/input/Input';
-import search from '../../assets/icons/search.svg?url';
+import search from '../../shared/assets/icons/search.svg?url';
 
 export const Autocomplete = forwardRef<AutocompleteRef, AutocompleteProps>(
   (

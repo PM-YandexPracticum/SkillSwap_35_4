@@ -2,8 +2,8 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import type { BDayInputProps } from './types';
 import styles from './BDayInput.module.scss';
 import { Input } from '../../shared/ui/input';
-import calendar from '../../../assets/icons/calendar.svg?url';
-import chevronDown from '../../../assets/icons/chevronDown.svg?url';
+import calendar from '../../shared/assets/icons/calendar.svg?url';
+import chevronDown from '../../shared/assets/icons/chevronDown.svg?url';
 import { Button } from '../../shared/ui/button';
 
 export const BDayInput: React.FC<BDayInputProps> = ({
@@ -136,6 +136,7 @@ export const BDayInput: React.FC<BDayInputProps> = ({
         placeholder={placeholder}
         readOnly
         onClick={handleInputClick}
+        className={styles.Input}
         icon={
           <span className={styles.calendarIcon} onClick={handleInputClick}>
             <img src={calendar} alt="Календарь" />

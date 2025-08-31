@@ -8,26 +8,26 @@
 .calendarIcon {
   cursor: pointer;
   user-select: none;
-  display: flex;
-  align-items: right;
-  justify-content: right;
+  position: absolute;
+  top: 12px;
+  right: 10px;
 }
 
 .calendarPopup {
+  width: 280px;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   margin-top: 4px;
   z-index: 10;
-  background: transparent;
+  background: var(--color-quartary);
   border: 1px solid var(--color-primary);
   border-radius: 12px;
 }
 
 .calendar {
   padding: 16px;
-  min-width: 400px;
 }
 
 .dropdowns {
@@ -37,6 +37,9 @@
 }
 
 .dropdown {
+  outline: none;
+  border: none;
+  max-width: 105px;
   flex: 1;
   padding: 8px 12px;
   font-size: var(--font-body);
@@ -45,9 +48,10 @@
 
 .calendarGrid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(7, 32px);
+  gap: 0;
   margin-bottom: 16px;
+  justify-self: center;
 }
 
 .weekDay {
@@ -75,8 +79,8 @@
 }
 
 .calendarFooter {
+  justify-self: center;
   display: flex;
-  justify-content: space-between;
   gap: 8px;
 }
 

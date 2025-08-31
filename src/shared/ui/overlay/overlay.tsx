@@ -1,4 +1,4 @@
-import style from './overlay.module.css';
+import style from './overlay.module.scss';
 
 export const Overlay = ({ onClick }: { onClick: () => void }) => {
   return (

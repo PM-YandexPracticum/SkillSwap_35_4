@@ -123,4 +123,4 @@ export const {
   selectError,
 } = usersSlice.selectors;
 
-export default usersSlice.reducer;
+export const usersReducer = usersSlice.reducer;

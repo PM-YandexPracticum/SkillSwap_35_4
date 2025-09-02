@@ -3,7 +3,7 @@ export interface User {
   email: string;
   password: string;
   name: string;
-  birthday: string;
+  birthDate: Date | null;
   gender: string;
   location: string;
   skillCanTeach: Subcategory[];
@@ -39,9 +39,10 @@ export interface RegisterUserData {
   email: string;
   password: string;
   name: string;
-  birthday: string;
   gender: string;
+  birthDate: Date | null;
   location: string;
+  skillImages: File[];
   skillCanTeach: Subcategory[];
   subcategoriesWantToLearn: Subcategory[];
 }

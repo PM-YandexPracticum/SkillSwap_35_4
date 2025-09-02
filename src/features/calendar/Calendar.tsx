@@ -7,6 +7,7 @@ import chevronDown from '../../shared/assets/icons/chevronDown.svg?url';
 import { Button } from '../../shared/ui/button';
 
 export const BDayInput: React.FC<BDayInputProps> = ({
+  value,
   onDateSelect,
   placeholder = 'дд.мм.гггг',
   className = '',
@@ -18,10 +19,13 @@ export const BDayInput: React.FC<BDayInputProps> = ({
   ...props
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(
+    value ? value.getMonth() : new Date().getMonth(),
+  );
+  const [currentYear, setCurrentYear] = useState(
+    value ? value.getFullYear() : new Date().getFullYear(),
+  );
 
   const months = useMemo(
     () => [
@@ -82,7 +86,6 @@ export const BDayInput: React.FC<BDayInputProps> = ({
     (day: number | null) => {
       if (day !== null) {
         const newDate = new Date(currentYear, currentMonth, day);
-        setSelectedDate(newDate);
         setShowCalendar(false);
         onDateSelect?.(newDate);
         inputRef.current?.focus();
@@ -123,7 +126,7 @@ export const BDayInput: React.FC<BDayInputProps> = ({
     inputRef.current?.focus();
   }, []);
 
-  const calendarUI = generateCalendar(currentYear, currentMonth);
+  const calendarUI = generateCalendar(currentMonth, currentYear);
 
   return (
     <div className={`${styles.container} ${className}`}>
@@ -132,7 +135,7 @@ export const BDayInput: React.FC<BDayInputProps> = ({
         label={label}
         error={error}
         errorMessage={errorMessage}
-        value={formatDate(selectedDate)}
+        value={formatDate(value || null)} // <-- теперь берём из пропа
         placeholder={placeholder}
         readOnly
         onClick={handleInputClick}
@@ -189,10 +192,10 @@ export const BDayInput: React.FC<BDayInputProps> = ({
                     className={`${styles.calendarDay} ${
                       day === null ? styles.empty : ''
                     } ${
-                      selectedDate &&
-                      day === selectedDate.getDate() &&
-                      currentMonth === selectedDate.getMonth() &&
-                      currentYear === selectedDate.getFullYear()
+                      value &&
+                      day === value.getDate() &&
+                      currentMonth === value.getMonth() &&
+                      currentYear === value.getFullYear()
                         ? styles.selected
                         : ''
                     }`}

@@ -39,11 +39,14 @@
 .dropdown {
   outline: none;
   border: none;
-  max-width: 105px;
+  max-width: 120px;
   flex: 1;
   padding: 8px 12px;
   font-size: var(--font-body);
   cursor: pointer;
+  &:last-of-type {
+    max-width: 85px;
+  }
 }
 
 .calendarGrid {
@@ -85,5 +88,6 @@
 }
 
 .footerButton {
+  font: var(--font-body);
   min-width: 125px;
 }

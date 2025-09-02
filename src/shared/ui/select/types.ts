@@ -12,4 +12,6 @@ export type SelectProps = {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  label?: string;
+  error?: string;
 };

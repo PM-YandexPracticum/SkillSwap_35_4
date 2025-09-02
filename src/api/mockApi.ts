@@ -94,7 +94,7 @@ export const registerUserApi = (
         'email',
         'password',
         'name',
-        'birthday',
+        'birthDate',
         'gender',
         'location',
         'skillCanTeach',

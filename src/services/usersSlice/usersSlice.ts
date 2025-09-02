@@ -1,18 +1,14 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit';
-import type { mockUser, OfferResponse, SwapOffer, User } from '../../api/types';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { OfferResponse, SwapOffer, User } from '../../api/types';
 import {
   getOffersByEmailApi,
-  getUsersApi,
   offerSwapApi,
+  getUsersFromStorage,
 } from '../../api/mockApi';
 
 interface UsersState {
-  usersData: mockUser[];
-  userData: mockUser | null;
+  usersData: User[];
+  userData: User | null;
   offers: SwapOffer[];
   isLoading: boolean;
   error: string | null;
@@ -27,13 +23,13 @@ export const initialState: UsersState = {
 };
 
 export const getUsers = createAsyncThunk('users/getUsers', async () =>
-  getUsersApi(),
+  getUsersFromStorage(),
 );
 
 export const getUserById = createAsyncThunk(
   'users/getUserById',
   async (id: number) => {
-    const users = await getUsersApi();
+    const users = await getUsersFromStorage();
     const user = users.find((u) => u.id === id);
     return user ?? null;
   },

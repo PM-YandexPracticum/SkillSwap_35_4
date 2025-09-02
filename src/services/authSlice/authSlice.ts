@@ -147,6 +147,11 @@ export const authSlice = createSlice({
       state.error = null;
     },
   },
+  selectors: {
+    isLoggedInSelector: (state) => state.isLoggedIn,
+    isInitSelector: (state) => state.isInit,
+    userSelector: (state) => state.user,
+  },
   extraReducers: (builder) => {
     // вход
     builder.addCase(loginUser.pending, (state) => {
@@ -243,5 +248,6 @@ export const authSlice = createSlice({
   },
 });
 
+export const { isLoggedInSelector, userSelector, isInitSelector } = authSlice.selectors;
 export const { init, logout, clearError } = authSlice.actions;
 export const authReducer = authSlice.reducer;

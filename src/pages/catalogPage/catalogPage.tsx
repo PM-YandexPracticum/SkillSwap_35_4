@@ -8,12 +8,14 @@ import { InfiniteScroll } from '../../shared/ui/infiniteScroll';
 import data from '../../api/mok.json';
 import type { CatalogPageProps } from './types';
 import { BusinessFilter } from '../../features/filter/filter';
+import { useNavigate } from 'react-router-dom';
 
 const PAGE_SIZE = 9;
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
   title = 'Каталог',
 }) => {
+  const navigate = useNavigate();
   const [darkTheme, setDarkTheme] = useState(true);
   const toggleTheme = () => setDarkTheme((p) => !p);
 
@@ -99,13 +101,13 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     <MainLayout
       header={
         <Header
-          onLogoClick={() => {}}
-          onAboutClick={() => {}}
+          onLogoClick={() => {navigate('/');}}
+          onAboutClick={() => {navigate('/about');}}
           onSearch={(v) => console.log('search', v)}
           onThemeToggle={toggleTheme}
           darkTheme={darkTheme}
-          onLogin={() => {}}
-          onRegister={() => {}}
+          onLogin={() => {navigate('/login');}}
+          onRegister={() => {navigate('/register');}}
         />
       }
       footer={<Footer />}

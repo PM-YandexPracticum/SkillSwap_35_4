@@ -8,6 +8,7 @@ import { skillsConfig } from '../../shared/constants/skills/skills.config';
 import { Button } from '../../shared/ui/button/button';
 import chevronRight from '../../shared/assets/icons/chevronRight.svg?url';
 import sort from '../../shared/assets/icons/sort.svg?url';
+import { useNavigate } from 'react-router-dom';
 
 type cardType = (typeof data.users)[number];
 
@@ -31,6 +32,7 @@ export const Catalog: React.FC<CatalogProps> = ({
   data,
 }) => {
   const [likedMap, setLikedMap] = React.useState<Record<string, boolean>>({});
+  const navigate = useNavigate();
 
   function mapToCustomSkills(
     items: { id: number; name: string }[],
@@ -94,7 +96,7 @@ export const Catalog: React.FC<CatalogProps> = ({
 
       <div className={style.items}>
         {data.map((cardData) => (
-          <Card key={cardData.id} {...toUserCardArgs(cardData)} />
+          <Card key={cardData.id} {...toUserCardArgs(cardData)} onDetailsClick={() => navigate(`/skill/${cardData.id}`)} />
         ))}
       </div>
     </div>

@@ -31,8 +31,10 @@ import {
   SKILL_TYPES,
   type SkillType,
 } from '../../shared/constants/skills/skills.config';
+import { useNavigate } from 'react-router';
 
 export const RegistrationPage = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<Step>(1);
   const [showPassword, setShowPassword] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -102,6 +104,10 @@ export const RegistrationPage = () => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const finishRegistration = () => {
+    navigate('/register/success');
   };
 
   return (
@@ -428,7 +434,7 @@ export const RegistrationPage = () => {
             <Button variant="secondary" onClick={() => setModalOpen(false)}>
               Редактировать
             </Button>
-            <Button variant="primary" onClick={() => alert('Готово!')}>
+            <Button variant="primary" onClick={finishRegistration}>
               Готово
             </Button>
           </div>

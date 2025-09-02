@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { ProfileSection } from '../../features/profileSection';
 import { Footer } from '../../widgets/footer';
 import { Header } from '../../widgets/header';
@@ -17,14 +18,17 @@ const userExample = {
 };
 
 export const Profile: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Header
-        onLogoClick={() => alert('Лого кликнуто')}
-        onAboutClick={() => alert('О проекте кликнуто')}
+        onLogoClick={() => navigate('/')}
+        onAboutClick={() => navigate('/about')}
         onSearch={() => alert('Поиск выполнен')}
-        onLogin={() => alert('Войти кликнуто')}
-        onRegister={() => alert('Регистрация кликнута')}
+        isLoggedIn={true}
+        username={userExample.name}
+        avatarUrl={userExample.avatarUrl}
       />
       <ProfileSection {...userExample} />
       <Footer />

@@ -1,31 +1,85 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { TestPage } from '../pages/testPage/TestPage';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import style from './App.module.scss';
-import { MainLayout } from './layouts/MainLayout';
-import { AuthLayout } from './layouts/AuthLayout';
+// import { TestPage } from '../pages/testPage/TestPage';
+// import { MainLayout } from './layouts/MainLayout';
+// import { AuthLayout } from './layouts/AuthLayout';
+import { ErrorPage404 } from '../pages/errorPage404';
+import { CatalogPage } from '../pages/catalogPage';
+import { RegistrationPage } from '../pages/registrationPage';
+import { Profile } from '../pages/profilePage';
+import { ProtectedRoute } from '../shared/ui/protectedRoute/protectedRoute';
+import { SkillPage } from '../pages/skillPage/skillPage';
+import { useDispatch } from '../services/store';
+import { useEffect } from 'react';
+import { init } from '../services/authSlice/authSlice';
+import { ModalUI } from '../shared/ui/ModalUI';
 
 function App() {
   const location = useLocation();
   const backgroundLocation = location.state?.background;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(init());
+  }, [dispatch]);
+
+  const onCloseModal = () => {
+    navigate(-1);
+  };
 
   return (
     <div className={style.app}>
       <Routes location={backgroundLocation || location}>
-        <Route element={<MainLayout header={null} footer={null} />}>
-          {' '}
-          {/* Добавить нужные элементы header/footer (основные пути)*/}
-          <Route index element={<TestPage />} />
-          <Route path="*" element={<div> Error 404 </div>} />{' '}
-          {/* Страница ошибок 404/500 */}
-        </Route>
-        <Route element={<AuthLayout />}>
-          {' '}
-          {/* Для путей '/auth/*'; Внуть AuthLayout добавить нужный Header)*/}
-        </Route>
+        <Route path="/" element={<CatalogPage />} />
+        <Route path="/skill/:id" element={<SkillPage />} />
+
+        {/* в макете нет этапа авторизации поэтому временно оба роутера ведут на страницу регистрации */}
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute onlyUnAuth>
+              <RegistrationPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <ProtectedRoute onlyUnAuth>
+              <RegistrationPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+            path="/register/success"
+            element={
+              <ProtectedRoute>
+                <CatalogPage />
+                <ModalUI openModal={true} onClose={onCloseModal}>
+                  <div>Registration Success</div>
+                </ModalUI>
+              </ProtectedRoute>
+            }
+          />
+
+        <Route path="*" element={<ErrorPage404 />} />
       </Routes>
 
       {/** Модалки */}
-      {backgroundLocation && <Routes></Routes>}
+      {backgroundLocation && (
+        <Routes>
+          
+        </Routes>
+      )}
     </div>
   );
 }

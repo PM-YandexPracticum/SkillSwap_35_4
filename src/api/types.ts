@@ -9,7 +9,8 @@ export interface User {
   skillCanTeach: Subcategory[];
   subcategoriesWantToLearn: Subcategory[];
   isAuth: boolean;
-  accessToken: string;
+  avatarUrl?: string;
+  description?: string;
 }
 
 export interface mockUser {

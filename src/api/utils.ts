@@ -7,7 +7,7 @@ const delay = (ms: number = 300): Promise<void> =>
 // Универсальная проверка ответа
 export const checkResponse = <T>(res: ApiResponse<T>): Promise<T> =>
   res.success
-    ? Promise.resolve(res.data)
+    ? Promise.resolve(res.data!) // поменял res.data => res.data!
     : Promise.reject(new Error(res.message || 'Request failed'));
 
 // Базовый обработчик запросов

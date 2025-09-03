@@ -19,7 +19,7 @@ interface FilterState {
   };
 }
 
-const initialState: FilterState = {
+export const initialState: FilterState = {
   users: [],
   loading: false,
   error: null,

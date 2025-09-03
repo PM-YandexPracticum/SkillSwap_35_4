@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Subcategory } from '../../api/types';
 
-interface SkillsState {
+export interface SkillsState {
   skillCanTeach: Subcategory;
   //  описание навыка (если пригодится)
   description: string;

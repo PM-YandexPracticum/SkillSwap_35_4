@@ -41,6 +41,7 @@ export const skillsSlice = createSlice({
     removeSkill: (state, action: PayloadAction<number>) => {
       state = state.filter((skill) => skill.uid !== action.payload);
       localStorage.setItem('userSkills', JSON.stringify(state));
+      return state; // исправил состояние не мутировалось
     },
   },
 });

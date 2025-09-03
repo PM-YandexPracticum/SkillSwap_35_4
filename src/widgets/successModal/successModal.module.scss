@@ -1,0 +1,21 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalImage {
+  width: 75px;
+  height: auto;
+  margin-bottom: 52px;
+}
+
+.modalDescription {
+  font: var(--font-body);
+  color: var(--color-text-primary);
+  margin: 12px 0 32px 0;
+}
+
+.modalButton {
+  min-width: 436px;
+}

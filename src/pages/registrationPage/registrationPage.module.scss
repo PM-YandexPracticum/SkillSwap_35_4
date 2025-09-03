@@ -53,7 +53,10 @@ button {
 }
 
 .continueBtn {
-  margin-top: 32px;
+  margin-top: 16px;
+  button {
+    width: 100%;
+  }
 }
 
 .passwordWrapper {
@@ -95,8 +98,8 @@ button {
 
 .passwordBtn {
   position: absolute;
-  top: 52px;
-  right: 20px;
+  top: 25px;
+  right: 15px;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -184,4 +187,15 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.error {
+  color: var(--color-error);
+}
+
+.errorWrapper {
+  max-height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }

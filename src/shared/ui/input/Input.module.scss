@@ -18,7 +18,7 @@
 
 .input {
   font: var(--font-body);
-  padding: 0 0 0 20px;
+  padding: 0 20px;
   flex: 1;
   outline: none;
   height: 48px;
@@ -51,11 +51,17 @@
 }
 
 .errorMessage {
+  position: absolute;
   color: var(--color-error);
   font-family: var(--font-family-main);
   font-weight: var(--font-regular);
   font-size: var(--font-size-xs);
   line-height: var(--font-line-s);
   letter-spacing: 0.02em;
-  margin-top: 4px;
+}
+
+.textarea {
+  min-height: 96px;
+  padding: 12px 20px;
+  resize: none;
 }

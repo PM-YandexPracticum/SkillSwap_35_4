@@ -74,3 +74,13 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+.error {
+  position: absolute;
+  color: var(--color-error);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-regular);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-s);
+  letter-spacing: 0.02em;
+}

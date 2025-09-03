@@ -12,6 +12,8 @@ export const Select: React.FC<SelectProps> = ({
   placeholder = 'Выберите...',
   disabled = false,
   className = '',
+  label,
+  error,
 }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -61,50 +63,56 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div
-      className={`${styles.selectWrapper} ${className} ${disabled ? styles.disabled : ''}`}
-      ref={ref}
-    >
-      <button
-        type="button"
-        className={styles.selectHeader}
-        onClick={() => (disabled ? null : setOpen((o) => !o))}
-        disabled={disabled}
+    <div className={`${styles.wrapper}`}>
+      {label && <label className={styles.label}>{label}</label>}
+      <div
+        className={`${styles.selectWrapper} ${className} ${disabled ? styles.disabled : ''}`}
+        ref={ref}
       >
-        <span>{renderValue()}</span>
-        <img src={ArrowIcon} className={styles.arrow} alt="arrow" />
-      </button>
-      {open && (
-        <ul className={styles.optionsList}>
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={`${styles.option} ${
-                (multiple &&
-                  Array.isArray(value) &&
-                  value.includes(option.value)) ||
-                (!multiple && value === option.value)
-                  ? styles.selected
-                  : ''
-              }`}
-              onClick={() => {
-                if (!multiple) handleSelect(option);
-              }}
-            >
-              {multiple ? (
-                <Checkbox
-                  checked={Array.isArray(value) && value.includes(option.value)}
-                  onChange={() => handleSelect(option)}
-                  label={option.label}
-                  disabled={disabled || option.disabled}
-                />
-              ) : (
-                <>{option.label}</>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+        <button
+          type="button"
+          className={styles.selectHeader}
+          onClick={() => (disabled ? null : setOpen((o) => !o))}
+          disabled={disabled}
+        >
+          <span>{renderValue()}</span>
+          <img src={ArrowIcon} className={styles.arrow} alt="arrow" />
+        </button>
+        {open && (
+          <ul className={styles.optionsList}>
+            {options.map((option) => (
+              <li
+                key={option.value}
+                className={`${styles.option} ${
+                  (multiple &&
+                    Array.isArray(value) &&
+                    value.includes(option.value)) ||
+                  (!multiple && value === option.value)
+                    ? styles.selected
+                    : ''
+                }`}
+                onClick={() => {
+                  if (!multiple) handleSelect(option);
+                }}
+              >
+                {multiple ? (
+                  <Checkbox
+                    checked={
+                      Array.isArray(value) && value.includes(option.value)
+                    }
+                    onChange={() => handleSelect(option)}
+                    label={option.label}
+                    disabled={disabled || option.disabled}
+                  />
+                ) : (
+                  <>{option.label}</>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };

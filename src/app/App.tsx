@@ -1,4 +1,9 @@
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import style from './App.module.scss';
 // import { TestPage } from '../pages/testPage/TestPage';
 // import { MainLayout } from './layouts/MainLayout';
@@ -10,15 +15,17 @@ import { Profile } from '../pages/profilePage';
 import { ProtectedRoute } from '../shared/ui/protectedRoute/protectedRoute';
 import { SkillPage } from '../pages/skillPage/skillPage';
 import { useDispatch } from '../services/store';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { init } from '../services/authSlice/authSlice';
-import { ModalUI } from '../shared/ui/ModalUI';
+import { useEffect } from 'react';
+import { SuccessModal } from '../widgets/successModal';
 
 function App() {
-  const location = useLocation();
-  const backgroundLocation = location.state?.background;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+   const backgroundLocation =
+    (location.state as { backgroundLocation?: Location })?.backgroundLocation;
 
   useEffect(() => {
     dispatch(init());
@@ -59,17 +66,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-            path="/register/success"
-            element={
-              <ProtectedRoute>
-                <CatalogPage />
-                <ModalUI openModal={true} onClose={onCloseModal}>
-                  <div>Registration Success</div>
-                </ModalUI>
-              </ProtectedRoute>
-            }
-          />
 
         <Route path="*" element={<ErrorPage404 />} />
       </Routes>
@@ -77,7 +73,14 @@ function App() {
       {/** Модалки */}
       {backgroundLocation && (
         <Routes>
-          
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute>
+                <SuccessModal onClose={onCloseModal} />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       )}
     </div>

@@ -1,4 +1,7 @@
 import { Preview } from '@storybook/react-vite';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../src/services/store';
 import '../src/index.scss';
 
 const preview: Preview = {
@@ -11,6 +14,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+  ],
 };
 
 export default preview;

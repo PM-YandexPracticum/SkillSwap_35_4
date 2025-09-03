@@ -4,7 +4,8 @@ const isEmpty = (value: unknown) =>
   value === null ||
   value === undefined ||
   (typeof value === 'string' && value.trim() === '') ||
-  (Array.isArray(value) && value.length === 0);
+  (Array.isArray(value) && value.length === 0) ||
+  (value instanceof Date && isNaN(value.getTime()));
 
 export const required =
   (massage = 'Обязательное поле'): Rule =>
@@ -13,17 +14,21 @@ export const required =
 
 export const minLength =
   (number: number, massage?: string): Rule =>
-  (value) =>
-    typeof value === 'string' && value.length < number
+  (value) => {
+    if (isEmpty(value)) return undefined;
+    return typeof value === 'string' && value.length < number
       ? (massage ?? `Минимум ${number} символов`)
       : undefined;
+  };
 
 export const maxLength =
   (number: number, massage?: string): Rule =>
-  (value) =>
-    typeof value === 'string' && value.length > number
+  (value) => {
+    if (isEmpty(value)) return undefined;
+    return typeof value === 'string' && value.length > number
       ? (massage ?? `Не более ${number} символов`)
       : undefined;
+  };
 
 export const pattern =
   (re: RegExp, massage = 'Неверный формат'): Rule =>

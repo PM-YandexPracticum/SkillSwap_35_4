@@ -3,7 +3,6 @@ import { useDropArea } from '../hooks/useDropArea';
 import type { DragDropAreaProps } from './types';
 import styles from './DragDropArea.module.scss';
 import GalleryAddIcon from '../../assets/icons/gallery-add.svg';
-('src/shared/assets/icons/gallery-add.svg');
 
 export const DragDropArea: React.FC<DragDropAreaProps> = ({
   onFilesSelect,
@@ -14,22 +13,6 @@ export const DragDropArea: React.FC<DragDropAreaProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
-
-  const handleDrop = useCallback(
-    (files: File[]) => {
-      const validFiles = files.filter(validateFile);
-      if (validFiles.length > 0) {
-        onFilesSelect(validFiles);
-        setError(null);
-      }
-    },
-    [onFilesSelect],
-  );
-
-  const { isDragging, dragEvents } = useDropArea({
-    onDrop: handleDrop,
-    maxFiles,
-  });
 
   const validateFile = useCallback(
     (file: File): boolean => {
@@ -52,6 +35,22 @@ export const DragDropArea: React.FC<DragDropAreaProps> = ({
     },
     [accept, maxSize],
   );
+
+  const handleDrop = useCallback(
+    (files: File[]) => {
+      const validFiles = files.filter(validateFile);
+      if (validFiles.length > 0) {
+        onFilesSelect(validFiles);
+        setError(null);
+      }
+    },
+    [onFilesSelect, validateFile],
+  );
+
+  const { isDragging, dragEvents } = useDropArea({
+    onDrop: handleDrop,
+    maxFiles,
+  });
 
   const handleClick = useCallback(() => {
     fileInputRef.current?.click();

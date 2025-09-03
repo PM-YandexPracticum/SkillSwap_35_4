@@ -1,6 +1,8 @@
+import type { Subcategory } from '../../api/types';
+
 export type Step = 1 | 2 | 3;
 
-export type RegistrationData = {
+export interface RegistrationFormState {
   email: string;
   password: string;
   name: string;
@@ -14,4 +16,7 @@ export type RegistrationData = {
   skillSubCategory: string;
   skillDescription: string;
   skillImages: File[];
-};
+  skillCanTeach: Subcategory[];
+  subcategoriesWantToLearn: Subcategory[];
+  [key: string]: any;
+}

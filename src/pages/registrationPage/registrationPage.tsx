@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, use } from 'react';
 import style from './registrationPage.module.scss';
 import { LogoUI } from '../../shared/ui/logoUI/logoUI';
 import { Button } from '../../shared/ui/button/button';
@@ -47,11 +47,14 @@ import {
   email as isEmail,
 } from '../../shared/utils/validation/rule';
 import type { Errors, Schema } from '../../shared/utils/validation/type';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const RegistrationPage = () => {
   const dispatch = useAppDispatch();
   const { isLoading, error, isLoggedIn } = useSelector((s) => s.auth);
 
+  const location = useLocation();
+  const navigate = useNavigate();
   const [step, setStep] = useState<Step>(1);
   const [showPassword, setShowPassword] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -123,9 +126,13 @@ export const RegistrationPage = () => {
   useEffect(() => {
     if (isLoggedIn && modalOpen) {
       setModalOpen(false);
-      window.location.href = '/';
+      navigate('/success', {
+      state: {
+        backgroundLocation: location,
+      },
+    });
     }
-  }, [isLoggedIn, modalOpen]);
+  }, [isLoggedIn, location, modalOpen, navigate]);
 
   const handleConfirm = () => {
     const payload: RegisterUserData = {

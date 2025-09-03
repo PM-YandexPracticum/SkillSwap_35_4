@@ -10,13 +10,18 @@ import editPhoto from '../../shared/assets/icons/gallery-edit.svg?url';
 import edit from '../../shared/assets/icons/edit.svg?url';
 import React from 'react';
 import type { UserProfile } from './type';
+import { useDispatch } from '../../services/store';
+import { updateUser } from '../../services/authSlice/authSlice';
 
 export const ProfileSection: React.FC<UserProfile> = (
   userData: UserProfile,
 ) => {
+  const dispatch = useDispatch();
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const submit = (values: Record<string, any>) => {
-    console.log('Submitted values:', values);
+    // console.log('Submitted values:', values);
+    dispatch(updateUser(values));
   };
 
   const [selectedTab, setSelectedTab] = React.useState<

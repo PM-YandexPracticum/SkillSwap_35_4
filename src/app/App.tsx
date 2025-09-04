@@ -1,9 +1,4 @@
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import style from './App.module.scss';
 // import { TestPage } from '../pages/testPage/TestPage';
 // import { MainLayout } from './layouts/MainLayout';
@@ -24,8 +19,9 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-   const backgroundLocation =
-    (location.state as { backgroundLocation?: Location })?.backgroundLocation;
+  const backgroundLocation = (
+    location.state as { backgroundLocation?: Location }
+  )?.backgroundLocation;
 
   useEffect(() => {
     dispatch(init());

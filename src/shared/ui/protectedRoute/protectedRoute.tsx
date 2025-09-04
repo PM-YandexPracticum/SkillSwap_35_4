@@ -2,16 +2,19 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { FC } from 'react';
-import { isInitSelector, isLoggedInSelector } from '../../../services/authSlice/authSlice';
+import {
+  isInitSelector,
+  isLoggedInSelector,
+} from '../../../services/authSlice/authSlice';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;
-  children: React.ReactNode	;
+  children: React.ReactNode;
 };
 
 export const ProtectedRoute: FC<ProtectedRouteProps> = ({
   onlyUnAuth = false,
-  children
+  children,
 }) => {
   const isAuthChecked = useSelector(isInitSelector);
   const user = useSelector(isLoggedInSelector);
@@ -23,24 +26,11 @@ export const ProtectedRoute: FC<ProtectedRouteProps> = ({
   }
 
   if (!onlyUnAuth && !user) {
-    return (
-      <Navigate
-        to="/login"
-        replace
-        state={incomingState}
-      />
-    );
+    return <Navigate to="/login" replace state={incomingState} />;
   }
 
   if (onlyUnAuth && user) {
-    const navigateTo = incomingState?.backgroundLocation || { pathname: '/success' };
-    return (
-      <Navigate
-        to={navigateTo.pathname}
-        replace
-        state={{ backgroundLocation: '/' }}
-      />
-    );
+    return <Navigate to="/profile" replace />;
   }
 
   return children;

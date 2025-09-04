@@ -120,19 +120,21 @@ export const RegistrationPage = () => {
   };
   const back = () => setStep((s) => (s > 1 ? ((s - 1) as Step) : s));
   const finish = () => {
-    if (validateStep(3)) setModalOpen(true);
+    if (validateStep(3)) {
+      setModalOpen(true);
+    }
   };
 
   useEffect(() => {
-    if (isLoggedIn && modalOpen) {
+    if (isLoggedIn && !isLoading && modalOpen) {
       setModalOpen(false);
       navigate('/success', {
-      state: {
-        backgroundLocation: location,
-      },
-    });
+        state: {
+          backgroundLocation: location,
+        },
+      });
     }
-  }, [isLoggedIn, location, modalOpen, navigate]);
+  }, [isLoggedIn, isLoading, modalOpen, navigate, location]);
 
   const handleConfirm = () => {
     const payload: RegisterUserData = {

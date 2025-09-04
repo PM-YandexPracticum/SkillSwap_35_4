@@ -6,6 +6,8 @@ import { Title } from '../../shared/ui/title/title';
 import { NestedCheckbox } from '../../shared/ui/nestedCheckbox';
 import { Checkbox } from '../../shared/ui/checkbox';
 import styles from './Filter.module.scss';
+import { CollapsibleList } from '../../shared/ui/collapsibleList/collapsibleList';
+import ChevronDownIcon from '../../shared/assets/icons/chevronDown.svg';
 
 export interface FilterOption {
   value: string;
@@ -95,14 +97,11 @@ export const Filter: React.FC<FilterProps> = ({
         </div>
 
         {skills.items.length > 4 && (
-          <button
-            className={styles.showAllButton}
+          <CollapsibleList
             onClick={() => setShowAllSkills(!showAllSkills)}
-            type="button"
-          >
-            {showAllSkills ? 'Свернуть' : 'Все категории'}
-            <span className={styles.arrow}>{showAllSkills ? '▲' : '▼'}</span>
-          </button>
+            text={showAllSkills ? 'Свернуть' : 'Все категории'}
+            className={styles.showAllButton}
+          />
         )}
       </div>
 
@@ -143,14 +142,11 @@ export const Filter: React.FC<FilterProps> = ({
         </div>
 
         {cities.items.length > 4 && (
-          <button
-            className={styles.showAllButton}
+          <CollapsibleList
             onClick={() => setShowAllCities(!showAllCities)}
-            type="button"
-          >
-            {showAllCities ? 'Свернуть' : 'Все города'}
-            <span className={styles.arrow}>{showAllCities ? '▲' : '▼'}</span>
-          </button>
+            text={showAllCities ? 'Свернуть' : 'Все города'}
+            className={styles.showAllButton}
+          />
         )}
       </div>
     </div>

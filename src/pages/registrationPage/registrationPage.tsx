@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, use } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import style from './registrationPage.module.scss';
 import { LogoUI } from '../../shared/ui/logoUI/logoUI';
 import { Button } from '../../shared/ui/button/button';

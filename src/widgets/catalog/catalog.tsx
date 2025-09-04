@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './catalog.module.scss';
-import data from '../../api/mok.json';
 import type { CardProps } from '../../features/card/types';
 import type { CustomSkill } from '../../models/skill/model';
 import { Card } from '../../features/card/card';
@@ -8,9 +7,11 @@ import { skillsConfig } from '../../shared/constants/skills/skills.config';
 import { Button } from '../../shared/ui/button/button';
 import chevronRight from '../../shared/assets/icons/chevronRight.svg?url';
 import sort from '../../shared/assets/icons/sort.svg?url';
-import { useNavigate } from 'react-router-dom';
 
-type cardType = (typeof data.users)[number];
+import { useSelector, useAppDispatch } from '../../services/store';
+import { getUsers, sendOffer } from '../../services/usersSlice/usersSlice';
+import type { User, SwapOffer, Subcategory } from '../../api/types';
+import type { RootState } from '../../services/store';
 
 type SkillsConfig = typeof skillsConfig;
 type SkillKey = keyof SkillsConfig;
@@ -22,21 +23,33 @@ type CatalogProps = {
   title: string;
   moreBtn: boolean;
   moreBtnType?: 'viewAll' | 'sort';
-  data: cardType[];
 };
 
-export const Catalog: React.FC<CatalogProps> = ({
-  title,
-  moreBtn,
-  moreBtnType,
-  data,
-}) => {
-  const [likedMap, setLikedMap] = React.useState<Record<string, boolean>>({});
-  const navigate = useNavigate();
+export const Catalog: React.FC<CatalogProps> = ({ title, moreBtn, moreBtnType }) => {
+  const dispatch = useAppDispatch();
+  const usersFromState = useSelector((state: RootState) => state.users.usersData);
+  const offers = useSelector((state: RootState) => state.users.offers);
+  const isLoading = useSelector((state: RootState) => state.users.isLoading);
 
-  function mapToCustomSkills(
-    items: { id: number; name: string }[],
-  ): CustomSkill[] {
+  const users = (usersFromState as unknown) as User[];
+
+  const [likedMap, setLikedMap] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (!users || users.length === 0) {
+      dispatch(getUsers());
+    }
+  }, [dispatch, users.length]);
+
+  useEffect(() => {
+    const map: Record<string, boolean> = {};
+    offers.forEach((offer: SwapOffer) => {
+      map[String(offer.targetUserId)] = true;
+    });
+    setLikedMap(map);
+  }, [offers]);
+
+  function mapToCustomSkills(items: Subcategory[]): CustomSkill[] {
     return items.map((s, idx) => ({
       category: DEFAULT_CATEGORY,
       subcategory: DEFAULT_SUBCATEGORY,
@@ -48,29 +61,49 @@ export const Catalog: React.FC<CatalogProps> = ({
     }));
   }
 
-  function toUserCardArgs(u: cardType): CardProps {
+  function toUserCardArgs(u: User): CardProps {
     const id = String(u.id);
     const isActive = !!likedMap[id];
 
+
+    const avatarUrl = ''; 
+    const description = '';
+
+
+    const ageTimestamp = u.birthDate ? Number(new Date(u.birthDate).getTime()) : 0;
+
     return {
       id,
-      login: u.login,
-      age: u.age,
-      gender: u.gender as 'Мужской' | 'Женский' | 'Не указан',
-      email: `${u.login}@example.com`,
-      avatarUrl: u.avatarUrl,
+      login: u.email.split('@')[0],
+      
+      age: ageTimestamp as any,
+      gender: (u.gender as 'Мужской' | 'Женский') ?? 'Не указан',
+      email: u.email,
+      avatarUrl,
       name: u.name,
       location: u.location,
-      birthday: '',
-      description: u.description,
+      birthday: u.birthDate ? new Date(u.birthDate).toLocaleDateString() : '',
+      description,
       skillCanTeach: mapToCustomSkills(u.skillCanTeach),
       subcategoriesWantToLearn: mapToCustomSkills(u.subcategoriesWantToLearn),
 
-      // контролируем лайк
       isLiked: isActive,
-      onToggleLike: () => setLikedMap((prev) => ({ ...prev, [id]: !prev[id] })),
+      onToggleLike: () => {
+        const newState = !likedMap[id];
+        setLikedMap((prev) => ({ ...prev, [id]: newState }));
 
-      hasRequested: false,
+        if (newState && u.skillCanTeach.length && u.subcategoriesWantToLearn.length) {
+          const offer: SwapOffer = {
+            targetUserId: u.id,
+            currentUserEmail: 'current@example.com', 
+            skillToLearn: u.subcategoriesWantToLearn[0],
+            skillToTeach: u.skillCanTeach[0],
+          };
+          dispatch(sendOffer(offer));
+        }
+      },
+
+      hasRequested: isActive,
       onDetailsClick: () => alert(`details: ${u.id}`),
       showLike: true,
       showDetails: true,
@@ -95,9 +128,11 @@ export const Catalog: React.FC<CatalogProps> = ({
       </div>
 
       <div className={style.items}>
-        {data.map((cardData) => (
-          <Card key={cardData.id} {...toUserCardArgs(cardData)} onDetailsClick={() => navigate(`/skill/${cardData.id}`)} />
-        ))}
+        {isLoading
+          ? 'Загрузка...'
+          : users.map((cardData: User) => (
+              <Card key={cardData.id} {...toUserCardArgs(cardData)} />
+            ))}
       </div>
     </div>
   );

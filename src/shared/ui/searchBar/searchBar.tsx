@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import searchIcon from '../../assets/icons/search.svg?url';
 import clearIcon from '../../assets/icons/cross.svg?url';
 import { IconButton } from '../iconButton';
 import style from './searchBar.module.scss';
 import type { SearchBarProps } from './types';
+import { useDebounce } from '../../hooks/useDebounce';
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = 'Поиск...',
@@ -27,8 +28,19 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const clearInput: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     setSearchTerm('');
+    onSearch('');
     inputRef.current?.focus();
   };
+
+  useEffect(() => {
+    setSearchTerm(defaultValue);
+  }, [defaultValue]);
+
+  const debouncedTerm = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    onSearch(debouncedTerm);
+  }, [debouncedTerm, onSearch]);
 
   return (
     <div className={[style['search-bar'], className].filter(Boolean).join(' ')}>

@@ -9,6 +9,7 @@ import data from '../../api/mok.json';
 import type { CatalogPageProps } from './types';
 import { BusinessFilter } from '../../features/filter/filter';
 import { useNavigate } from 'react-router-dom';
+import { useDebounce } from '../../shared/hooks/useDebounce';
 
 const PAGE_SIZE = 9;
 
@@ -97,13 +98,42 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     setPage(1);
   }, [filteredData]);
 
+  const [rawSearch, setRawSearch] = useState('');
+  const debounced = useDebounce(rawSearch, 500);
+
+  useEffect(() => {
+    setFilters(prev => {
+      if (debounced) {
+        if (prev.skills.length === 1 && prev.skills[0] === debounced) {
+          return prev;
+        }
+        return { ...prev, skills: [debounced] };
+      } else {
+        if (
+          prev.skills.length === 0 &&
+          prev.activityType === 'all' &&
+          prev.authorGender === 'any' &&
+          prev.cities.length === 0
+        ) {
+          return prev;
+        }
+        return {
+          activityType: 'all',
+          skills: [] as string[],
+          authorGender: 'any',
+          cities: [] as string[],
+        };
+      }
+    });
+  }, [debounced]);
+
   return (
     <MainLayout
       header={
         <Header
           onLogoClick={() => {navigate('/');}}
           onAboutClick={() => {navigate('/about');}}
-          onSearch={(v) => console.log('search', v)}
+          onSearch={(value) => {setRawSearch(value);}}
           onThemeToggle={toggleTheme}
           darkTheme={darkTheme}
           onLogin={() => {navigate('/login');}}

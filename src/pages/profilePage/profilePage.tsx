@@ -25,7 +25,7 @@ export const Profile: React.FC = () => {
       <Header
         onLogoClick={() => navigate('/')}
         onAboutClick={() => navigate('/about')}
-        onSearch={() => alert('Поиск выполнен')}
+        onSearch={() => {}}
         isLoggedIn={true}
         username={userExample.name}
         avatarUrl={userExample.avatarUrl}

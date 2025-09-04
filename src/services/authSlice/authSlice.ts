@@ -25,7 +25,6 @@ export const initialState: AuthState = {
   isLoggedIn: false,
 };
 
-export const LOCAL_STORAGE_SWAP_USERS_ALIAS = 'swap_users'; // Название переменной в localStorage поместил в отдельную переменную чтобы тесты не падали при её изменении
 // регистрация пользователя
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -110,6 +109,7 @@ export const logoutUser = createAsyncThunk(
     try {
       const state = getState() as { auth: AuthState };
       const user = state.auth.user;
+
       if (user && user.accessToken) {
         const response = await logoutApi(user.email, user.accessToken);
         if (!response.success) {
@@ -117,6 +117,7 @@ export const logoutUser = createAsyncThunk(
         }
       }
       document.cookie = 'accessToken=; Max-Age=0; path=/;';
+
       return null;
     } catch (error) {
       return rejectWithValue(
@@ -165,13 +166,13 @@ export const authSlice = createSlice({
       state.isInit = true;
       if (action.payload) {
         try {
-          const storedUsers = localStorage.getItem(LOCAL_STORAGE_SWAP_USERS_ALIAS);
+          const storedUsers = localStorage.getItem('swap_users');
           const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
           const userIndex = users.findIndex((u) => u.id === action.payload!.id);
 
           if (userIndex !== -1) {
             users[userIndex] = { ...users[userIndex], isAuth: true };
-            localStorage.setItem(LOCAL_STORAGE_SWAP_USERS_ALIAS, JSON.stringify(users));
+            localStorage.setItem('swap_users', JSON.stringify(users));
           }
         } catch (error) {
           console.error('Error updating user in localStorage:', error);
@@ -191,19 +192,18 @@ export const authSlice = createSlice({
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
       state.user = null;
       state.error = null;
-      state.isLoggedIn = false;
-
       try {
-        const storedUsers = localStorage.getItem(LOCAL_STORAGE_SWAP_USERS_ALIAS);
+        const storedUsers = localStorage.getItem('swap_users');
         if (storedUsers) {
           const users: User[] = JSON.parse(storedUsers);
           const updatedUsers = users.map((user) => ({
             ...user,
             isAuth: false,
           }));
-          localStorage.setItem(LOCAL_STORAGE_SWAP_USERS_ALIAS, JSON.stringify(updatedUsers));
+          localStorage.setItem('swap_users', JSON.stringify(updatedUsers));
         }
       } catch (error) {
         console.error('Error updating localStorage on logout:', error);
@@ -248,6 +248,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { isLoggedInSelector, userSelector, isInitSelector } = authSlice.selectors;
+export const { isLoggedInSelector, userSelector, isInitSelector } =
+  authSlice.selectors;
 export const { init, logout, clearError } = authSlice.actions;
 export const authReducer = authSlice.reducer;

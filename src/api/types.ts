@@ -11,6 +11,7 @@ export interface User {
   isAuth: boolean;
   avatarUrl?: string;
   description?: string;
+  accessToken: string;
 }
 
 export interface mockUser {

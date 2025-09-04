@@ -1,0 +1,13 @@
+.story-container {
+  padding: 20px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.story-title {
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+}

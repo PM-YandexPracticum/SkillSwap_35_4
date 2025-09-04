@@ -1,0 +1,28 @@
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+}
+
+.header button {
+  color: var(--font-color-primary);
+  font: var(--font-body);
+  background-color: var(--color-quaternary);
+}
+
+.title {
+  margin: 0;
+  font: var(--font-h1);
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}

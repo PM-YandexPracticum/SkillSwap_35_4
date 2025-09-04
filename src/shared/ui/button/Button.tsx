@@ -8,12 +8,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       variant = 'primary',
       size = 'md',
-      loading = false,
-      fullWidth = false,
-      startIcon,
-      endIcon,
-      className,
       children,
+      className,
       disabled,
       ...props
     },
@@ -26,26 +22,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           styles.button,
           styles[`variant-${variant}`],
           styles[`size-${size}`],
-          {
-            [styles.loading]: loading,
-            [styles.fullWidth]: fullWidth,
-          },
+          { [styles.disabled]: disabled },
           className,
         )}
-        disabled={disabled || loading}
-        aria-busy={loading}
+        disabled={disabled}
         {...props}
       >
-        {startIcon && <span className={styles.icon}>{startIcon}</span>}
         {children}
-        {endIcon && <span className={styles.icon}>{endIcon}</span>}
-        {loading && (
-          <span className={styles.loader} aria-hidden="true">
-            <span className={styles.loaderDot} />
-            <span className={styles.loaderDot} />
-            <span className={styles.loaderDot} />
-          </span>
-        )}
       </button>
     );
   },

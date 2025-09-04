@@ -1,7 +1,10 @@
 import { type Skill, type CustomSkill } from '../skill/model';
 
 export type Timestamp = string | number | Date;
-export type UserSkill = Skill | CustomSkill;
+
+export type UserSkill =
+  | (Skill & { id: string | number })
+  | (CustomSkill & { subcategoryId: string | number });
 
 export interface User {
   id: string;
@@ -16,11 +19,4 @@ export interface User {
   description: string;
   skillCanTeach: UserSkill[];
   subcategoriesWantToLearn: UserSkill[];
-}
-
-// пропсы для userCard
-export interface UserCardProps extends User {
-  showDetails?: boolean;
-  showLike?: boolean;
-  showDescription?: boolean;
 }

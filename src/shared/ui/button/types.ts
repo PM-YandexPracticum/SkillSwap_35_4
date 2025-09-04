@@ -1,9 +1,12 @@
+import React from 'react';
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
-  loading?: boolean;
   fullWidth?: boolean;
+  loading?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  children: React.ReactNode;
 }

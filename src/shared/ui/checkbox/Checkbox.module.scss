@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkboxCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: white;
+
+  .checkboxInput:checked + & {
+    border-color: var(--color-accent-light);
+    background: var(--color-accent-light);
+  }
+
+  .checkboxInput:focus + & {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  .checkboxInput:disabled + & {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.checkboxIcon {
+  width: 10px;
+  height: 10px;
+  path {
+    stroke: white;
+    stroke-width: 3;
+    fill: none;
+  }
+}
+
+.checkboxLabel {
+  font-size: var(--font-size-s);
+  line-height: var(--font-size-l);
+  color: var(--font-color-primary);
+  user-select: none;
+}
+
+.checkboxDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

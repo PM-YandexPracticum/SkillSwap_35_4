@@ -1,0 +1,61 @@
+.skill {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font: var(--font-caption);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.iconOnly {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.labelVariant {
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+.labelVariant.business {
+  background-color: #eee7f7;
+}
+
+.labelVariant.creativity {
+  background-color: var(--color-skill-creativity);
+}
+
+.labelVariant.languages {
+  background-color: var(--color-skill-languages);
+}
+
+.labelVariant.development {
+  background-color: var(--color-skill-education);
+}
+
+.labelVariant.home {
+  background-color: var(--color-skill-home);
+}
+
+.labelVariant.health {
+  background-color: var(--color-skill-health);
+}
+
+.labelVariant.extra {
+  background-color: var(--color-skill-extra);
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.plus {
+  display: inline;
+  white-space: nowrap;
+}

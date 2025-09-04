@@ -1,4 +1,4 @@
-export type TitleVariant = 'h1' | 'h2' | 'h3' | 'h4';
+export type TitleVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'caption';
 export type TitleColor = 'primary' | 'secondary' | 'accent' | 'error';
 
 export interface TitleProps {
@@ -9,7 +9,7 @@ export interface TitleProps {
   /** Дополнительные классы */
   className?: string;
   /** Дочерние элементы */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Выравнивание текста */
   align?: 'left' | 'center' | 'right';
   /** Начертание шрифта */

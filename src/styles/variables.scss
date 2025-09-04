@@ -1,64 +1,66 @@
 :root {
-  // fonts
+  /* fonts */
   --font-family-main: 'Roboto', sans-serif;
   --font-family-secondary: 'Jost', sans-serif;
 
-  // fonts weight
+  /* fonts weight */
   --font-regular: 400;
   --font-medium: 500;
   --font-semibold: 600;
 
-  // fonts sizes 
+  /* fonts sizes */
   --font-size-xs: 12px;
   --font-size-s: 16px;
   --font-size-m: 20px;
   --font-size-l: 24px;
   --font-size-xl: 32px;
 
-  // fonts line height
+  /* fonts line height */
   --font-line-s: 16px;
   --font-line-m: 24px;
   --font-line-l: 32px;
   --font-line-xl: 40px;
-  
-  // ready to use rules
-  --font-caption: var(--font-regular) var(--font-size-xs) / var(--font-line-s) var(--font-family-main);
-  --font-Body: var(--font-regular) var(--font-size-s) / var(--font-line-m) var(--font-family-main);
-  --font-h4: var(--font-medium) var(--font-size-s) / var(--font-line-m) var(--font-family-main);
-  --font-h3: var(--font-medium) var(--font-size-m) / var(--font-line-m) var(--font-family-secondary);
-  --font-h2: var(--font-medium) var(--font-size-l) / var(--font-line-l) var(--font-family-secondary); 
-  --font-h1: var(--font-medium) var(--font-size-xl) / var(--font-line-xl) var(--font-family-secondary); 
-  
-  // fonts colors
+
+  /* ready to use rules */
+  --font-caption: var(--font-regular) var(--font-size-xs) / var(--font-line-s)
+    var(--font-family-main);
+  --font-body: var(--font-regular) var(--font-size-s) / var(--font-line-m)
+    var(--font-family-main);
+  --font-h4: var(--font-medium) var(--font-size-s) / var(--font-line-m)
+    var(--font-family-main);
+  --font-h3: var(--font-medium) var(--font-size-m) / var(--font-line-m)
+    var(--font-family-secondary);
+  --font-h2: var(--font-medium) var(--font-size-l) / var(--font-line-l)
+    var(--font-family-secondary);
+  --font-h1: var(--font-medium) var(--font-size-xl) / var(--font-line-xl)
+    var(--font-family-secondary);
+
+  /* fonts colors */
   --font-color-primary: var(--color-primary);
   --font-color-secondary: var(--color-secondary);
   --font-color-accent: var(--color-accent);
   --font-color-error: var(--color-error);
 
-
-  // colors
+  /* colors */
+  --color-bg: #f9faf7;
   --color-primary: #253017;
-  --color-secondary: #69735D;
-  --color-tertiary: #9CA197;
-  --color-quartary: #FFFFFF;
-  --color-quintary: #E4E8DF;
-  --color-sextary: #B2B9A9; // не исполоьзуется
-
+  --color-secondary: #69735d;
+  --color-tertiary: #9ca197;
+  --color-quartary: #fff;
+  --color-quintary: #e4e8df;
+  --color-sextary: #b2b9a9; /* не используется */
   --color-accent: #508826;
-  --color-accent-light: #ABD27A;
-  --color-accent-lighten: #DEEBC5;
-
-  --color-error: #BF3920;
-  --color-alarm: #E0796E;
-
-  --bg-color-primary: #F9FAF7;
-  --bg-color-modal-overlay: #8E8E8E99;
-
-  --color-skill-business: #EEE7F7;
-  --color-skill-creativity: #F7E7F2;
-  --color-skill-languages: #EBE5C5;
-  --color-skill-education: #E7F2F6;
-  --color-skill-home: #F7EBE5;
-  --color-skill-health: #E9F7E7;
-  --color-skill-extra: #E8ECF7;
+  --color-accent-light: #abd27a;
+  --color-accent-lighten: #deebc5;
+  --color-error: #bf3920;
+  --color-alarm: #e0796e;
+  --bg-color-primary: #f9faf7;
+  --bg-color-modal-overlay: #8e8e8e99;
+  --color-skill-business: #eee7f7;
+  --color-skill-creativity: #f7e7f2;
+  --color-skill-languages: #ebe5c5;
+  --color-skill-education: #e7f2f6;
+  --color-skill-home: #f7ebe5;
+  --color-skill-health: #e9f7e7;
+  --color-skill-extra: #e8ecf7;
 }

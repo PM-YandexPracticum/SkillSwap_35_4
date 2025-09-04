@@ -18,8 +18,10 @@ export const SkillList: React.FC<SkillListProps> = ({ skills }) => {
   const [canShowSecond, setCanShowSecond] = useState(true);
 
   useLayoutEffect(() => {
-    setIsCollapsed(true);
-  }, [skills]);
+    if (!isCollapsed) {
+      setIsCollapsed(true);
+    }
+  }, [isCollapsed, skills]);
 
   const recalc = () => {
     if (!containerRef.current || skills.length < 2 || !isCollapsed) {

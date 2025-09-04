@@ -17,7 +17,7 @@ export const SkillPage = () => {
           //@TODO проверить и заменить функции-заглушки
           onLogoClick={() => navigate('/')}
           onAboutClick={() => navigate('/about')}
-          onSearch={() => alert('Поиск')}
+          onSearch={() => {}}
           onThemeToggle={() => alert('Смена темы')}
           onLogin={() => navigate('/login')}
           onRegister={() => navigate('/register')}

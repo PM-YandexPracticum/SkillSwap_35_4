@@ -9,8 +9,6 @@ export interface User {
   skillCanTeach: Subcategory[];
   subcategoriesWantToLearn: Subcategory[];
   isAuth: boolean;
-  avatarUrl?: string;
-  description?: string;
   accessToken: string;
 }
 

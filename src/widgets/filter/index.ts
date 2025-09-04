@@ -1,2 +1,2 @@
-export { Filter } from './Filter';
-export type { FilterProps, FilterOption, CheckboxItem } from './Filter';
+export { Filter } from './filter';
+export type { FilterProps, FilterOption, CheckboxItem } from './filter';

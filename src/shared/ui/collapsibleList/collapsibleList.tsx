@@ -1,7 +1,7 @@
 import React from 'react';
 import type { CollapsibleListProps } from './types';
 import clsx from 'clsx';
-import styles from './CollapsibleList.module.scss';
+import styles from './collapsibleList.module.scss';
 
 export const CollapsibleList = React.forwardRef<
   HTMLButtonElement,
